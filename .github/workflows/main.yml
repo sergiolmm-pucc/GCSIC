@@ -2,8 +2,32 @@ name: Aula de GCS (PUC CAMPINAS)
 
 on: push
 
+defaults:
+  run:
+    shell: bash
+    # working-directory: 
+
 jobs:
   primeiro:
-    name: Primerio Job escrito
+     steps:
+       -name: Mostrar rodadndo
+       -run: |
+        echo  teste
+       
     
+  segundo:
+    name: Segundo
+    steps:
+      name: Criando Variaveis de ambiente
+      env:
+        VAR1: Isto é
+        VAR2: GitHUB ACtions
+      run: echo $VAR1 $VAR2
+      
+
+
+
+
+
+
 
