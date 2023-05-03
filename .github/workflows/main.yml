@@ -10,7 +10,6 @@ jobs:
       
       - name: Checkout o repositorio
         uses: actions/checkout@v3
-         
       
       - name: Mostrar rodadndo
         run: echo  "teste"
@@ -18,6 +17,25 @@ jobs:
         run: echo "${{ github.event_name }} foi disparado"
       - name: listando conteudo
         run: ls -la ${{ github.workspace }}
+      
+  Segundo_exemplo:
+    runs-on: ubuntu-latest
+
+    strategy:
+     matrix:
+      node-version: [10.x, 12.x, 14.x, 15.x,20.x]
+
+    steps:
+      - uses: actions/checkout@v3 
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }} 
+
+      - run: npm ci         
+      - run: npm run build --if-present
+      - run: npm test
+
     
  # segundo:
  ##   runs-on: windows-latest
