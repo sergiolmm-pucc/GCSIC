@@ -4,7 +4,7 @@
   "description": "Gerencia de Configuração de SOftware e Entrega Continua",
   "main": "index.js",
   "scripts": {
-    "test": "jest --no-color 2>output.xml"
+    "test": "jest output.xml 2>&1"
   },
   "repository": {
     "type": "git",
