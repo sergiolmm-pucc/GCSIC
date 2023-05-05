@@ -4,7 +4,7 @@
   "description": "Gerencia de Configuração de SOftware e Entrega Continua",
   "main": "index.js",
   "scripts": {
-    "test": "jest --json --outputFile='saida.json'"
+    "test": "jest --json 2>saida.json"
   },
   "repository": {
     "type": "git",
