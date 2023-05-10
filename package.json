@@ -8,12 +8,14 @@
     "test": "jest --ci --reporters=default --reporters=jest-Junit"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sergiolmm-pucc/GCSIC.git"
+    "url": "https://glitch.com/edit/#!/glitch-mvp-node"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "glitch"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sergiolmm-pucc/GCSIC/issues"
   },
@@ -34,16 +36,7 @@
     "classNameTemplate": "{classname}",
     "titleTemplate": "{title}"
   },
-  "engines":{
-    "node":"14.x"
-  },
-  "repository":{
-    "url": "https://glitch.com/edit/#!/glitch-mvp-node"
-  },
-  "license": "MIT",
-  "keywords":[
-    "node",
-    "glitch"
-    ]
-  
+  "engines": {
+    "node": "14.x"
+  }
 }
