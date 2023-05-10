@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --ci --reporters=default --reporters=jest-Junit"
+    "test": "jest --ci --reporters=default --reporters=jest-junit"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-mvp-node"
