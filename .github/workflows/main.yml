@@ -23,7 +23,7 @@ jobs:
 
     strategy:
      matrix:
-      node-version: [14.x, 15.x, 18.x, 20.x]
+      node-version: [14.x]
       # versao 10 e 12 desatualizadas e nao mais em produção
     steps:
       - uses: actions/checkout@v3 
@@ -42,7 +42,16 @@ jobs:
           name: JEST Tests            # Name of the check run which will be created
           path: reports/jest-*.xml    # Path to test results
           reporter: jest-junit        # Format of test results
-    
+      - name: Enviando ao Glitch
+        uses: kanadgupta/glitch-sync@main
+        with:
+          auth-token: '${{ secrets.authToken }}' 
+          project-id: '${{ secrets.projectId }}'
+
+# 
+#
+#
+
  # segundo:
  ##   runs-on: windows-latest
  #   name: First

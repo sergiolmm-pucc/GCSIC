@@ -4,6 +4,7 @@
   "description": "Gerencia de Configuração de SOftware e Entrega Continua",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "jest --ci --reporters=default --reporters=jest-Junit"
   },
   "repository": {
@@ -21,6 +22,7 @@
     "jest": "^29.5.0"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "jest-junit": "^16.0.0"
   },
   "jest-junit": {
@@ -31,5 +33,17 @@
     "suiteNameTemplate": "{filepath}",
     "classNameTemplate": "{classname}",
     "titleTemplate": "{title}"
-}
+  },
+  "engines":{
+    "node":"14.x"
+  },
+  "repository":{
+    "url": "https://glitch.com/edit/#!/glitch-mvp-node"
+  },
+  "license": "MIT",
+  "keywords":[
+    "node",
+    "glitch"
+    ]
+  
 }
