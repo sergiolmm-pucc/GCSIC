@@ -19,6 +19,7 @@ jobs:
         run: ls -la ${{ github.workspace }}
       
   Segundo_exemplo:
+    permissions: write-all  
     runs-on: ubuntu-latest
 
     strategy:
