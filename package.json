@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "jest --ci --reporters=default --reporters=jest-junit",
     "test1": "node tests/button-render.js",
-    "e2e-test": "start-server-and-test http://localhost:3000 test1"
+    "e2e-test": "start-server-and-test http://localhost:3000/ht test1"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-mvp-node"

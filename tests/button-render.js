@@ -27,6 +27,7 @@ const screen = {
         //let b = await driver.findElement(By.id('sendbutton'));
     let text = await driver.findElement(By.id('sendbutton')).getText().then((text) =>{ return "ok - " + text});   
     console.log(text);
+    
 
 
   } finally {
