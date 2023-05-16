@@ -1,17 +1,23 @@
 const chrome = require('selenium-webdriver/chrome');
 const firefox = require('selenium-webdriver/firefox');
+const webdriver = require('selenium-webdriver');
 const {Builder, Browser, By } = require('selenium-webdriver');
  
 const screen = {
-  width: 1920,
-  height: 1080
+  width: 1024,
+  height: 720
 };
  
 (async function buttonRender() {
     console.log("BUILD 1");
+
+    var capabilities = webdriver.Capabilities.chrome();
+	capabilities.set('chromeOptions', {'args': ['--no-sandbox']});
+
     let driver = await new Builder()
       .forBrowser(Browser.CHROME)
-    //.setChromeOptions(new chrome.Options().headless().windowSize(screen))
+      .withCapabilities(capabilities)
+      .setChromeOptions(new chrome.Options().headless().windowSize(screen))
       .build();
     console.log("BUILD 2");
   try {
@@ -27,7 +33,7 @@ const screen = {
         //let b = await driver.findElement(By.id('sendbutton'));
     let text = await driver.findElement(By.id('sendbutton')).getText().then((text) =>{ return "ok - " + text});   
     console.log(text);
-    
+
 
 
   } finally {
