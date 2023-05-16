@@ -49,6 +49,20 @@ jobs:
           auth-token: '${{ secrets.authToken }}' 
           project-id: '${{ secrets.projectId }}'
 
+
+  tests:
+    runs-on: ubuntu-latest
+    name: Run Selenium Tests
+    steps:
+      - name: Start selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+         
+      - uses: actions/checkout@v1
+      - run: npm ci  
+         
+      - name: Run end to end tests
+        run: npm run e2e-test
+        
 # 
 #
 #
