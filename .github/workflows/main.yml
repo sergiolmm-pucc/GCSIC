@@ -24,7 +24,7 @@ jobs:
 
     strategy:
      matrix:
-      node-version: [14.x]
+      node-version: [19.x]
       # versao 10 e 12 desatualizadas e nao mais em produção
     steps:
       - uses: actions/checkout@v3 
@@ -57,12 +57,18 @@ jobs:
       - name: Start selenoid
         uses: Xotabu4/selenoid-github-action@v2
          
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3 
+      - name: Use Node.js 19.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19.x
+
+#      - uses: actions/checkout@v1
       - run: npm ci  
          
       - name: Run end to end tests
         run: npm run e2e-test
-        
+
 # 
 #
 #
