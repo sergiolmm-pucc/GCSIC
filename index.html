@@ -19,6 +19,15 @@
             21002558
         </h1>
         <h2>Sergio</h2>
-        <button type="submit" id="sendbutton" value="teste">Click Aqui</button>
+        <button id="sendbutton" value="teste" onClick="alerta()">Click Aqui</button>
+        <br>
+        <h1>
+            <p id="demo"></p>
+        </h1>
+        <script>
+            function alerta() {                
+                document.getElementById("demo").innerHTML = "Hello World";
+            }
+        </script>
     </body>
 </html>

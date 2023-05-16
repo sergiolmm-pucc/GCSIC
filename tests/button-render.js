@@ -34,9 +34,16 @@ const screen = {
     let text = await driver.findElement(By.id('sendbutton')).getText().then((text) =>{ return "ok - " + text});   
     console.log(text);
 
+    console.log("antes do click");
+    let text1a = await driver.findElement(By.id('demo')).getText().then((text) =>{ return "ok - " + text});   
+    console.log(text1a);
 
+    await driver.findElement(By.id('sendbutton')).click();
+    let text1 = await driver.findElement(By.id('demo')).getText().then((text) =>{ return "ok - " + text});   
+    console.log(text1);
 
   } finally {
     await driver.quit();
   }
 })();
+
