@@ -1,7 +1,15 @@
 const process = require('process');
 const webdriver = require('selenium-webdriver');
 const {until} = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+const firefox = require('selenium-webdriver/firefox');
+const {Builder, Browser, By } = require('selenium-webdriver');
 
+const screen = {
+    width: 1024,
+    height: 720
+  };
+   
 //describe('sampleFunctionalTests', function ()
 (async function buttonRender() 
  {
@@ -12,10 +20,13 @@ const {until} = require('selenium-webdriver');
 	var capabilities = webdriver.Capabilities.chrome();
 	capabilities.set('chromeOptions', {'args': ['--no-sandbox']});
 
-	let driver = new webdriver.Builder()
-			.forBrowser('chrome')
-			.withCapabilities(capabilities)
-			.build();
+    
+    let driver = await new Builder()
+              .forBrowser(Browser.CHROME)
+              .withCapabilities(capabilities)
+              .setChromeOptions(new chrome.Options().headless().windowSize(screen))
+              .build();
+
 	await driver.manage().setTimeouts({pageLoad: 300000});
 	
 
