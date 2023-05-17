@@ -1,5 +1,11 @@
 name: Aula de GCS (PUC CAMPINAS)
-on: push
+run-name: ${{ github.actor }} is learning GitHub Actions
+
+on: 
+  push:
+    branches:
+      - main
+
 jobs:
   primeiro:
     runs-on: ubuntu-latest
