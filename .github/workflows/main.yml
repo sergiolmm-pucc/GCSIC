@@ -74,7 +74,8 @@ jobs:
          
       - name: Run end to end tests
         run: npm run e2e-test
-
+      - name: Run onsite
+        run: npm run on-site
 # 
 #
 #
