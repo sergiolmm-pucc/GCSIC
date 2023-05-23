@@ -30,7 +30,7 @@ jobs:
 
     strategy:
      matrix:
-      node-version: [19.x]
+      node-version: [18.x]
       # versao 10 e 12 desatualizadas e nao mais em produção
     steps:
       - uses: actions/checkout@v3 
@@ -64,10 +64,10 @@ jobs:
         uses: Xotabu4/selenoid-github-action@v2
          
       - uses: actions/checkout@v3 
-      - name: Use Node.js 19.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 19.x
+          node-version: 18.x
 
 #      - uses: actions/checkout@v1
       - run: npm ci  
