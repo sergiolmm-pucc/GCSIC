@@ -1,4 +1,5 @@
 var express = require('express')
+const { markupGet } = require('./markup2')
 const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
 
@@ -11,6 +12,8 @@ server.get('/', function(req,res){
 });
 
 server.get('/ht', (req,res) => res.sendFile(INDEX, { root: __dirname}));
+
+server.get('/MKP2', markupGet)
 
 const multi = require('./multiply')
 console.log(multi.multiply('3,4'));
