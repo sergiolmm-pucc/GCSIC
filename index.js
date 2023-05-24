@@ -1,4 +1,5 @@
 var express = require('express')
+const { markupGet } = require('./markup2')
 const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
 const endpoints = {
@@ -30,6 +31,7 @@ server.get('/INFP', (req, res) => res.sendFile(endpoints.infp));
 server.get('/INFP2', (req, res) => res.sendFile(endpoints.infp2));
 server.get('/MKP', (req, res) => res.sendFile(endpoints.mkp));
 server.get('/MKP2', (req, res) => res.sendFile(endpoints.mkp2));
+server.get('/MKP2calc', markupGet)
 
 const multi = require('./multiply')
 console.log(multi.multiply('3,4'));
