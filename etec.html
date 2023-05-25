@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora ETEC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+        :root {
+            --linear-gradient: linear-gradient(90deg, #38bdf8, #6d28d9, #4c1d95);
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--linear-gradient);
+            color: #d1d5db;
+        }
+
+        #calculator {
+            background-color: #262626;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 10px 10px 10px rgba(0,0,0,0.323);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        #calculator h2 {
+            font-size: 30px;
+            position: relative;
+        }
+
+        #calculator h2::before{
+            position: absolute;
+            content: '';
+            height: 3px;
+            width: 150px;
+            background: var(--linear-gradient);
+            bottom: 5px;
+        }
+
+        #input_box {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .input-field label {
+            font-size: 15px;
+            color: #c8ced6;
+            font-weight: 500;
+        }
+
+        .input-field input {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #5928a4;
+            color: #fff;
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        .input-field input:focus {
+            outline: none;
+        }
+
+        #result {
+            text-align: center;
+        }
+
+        #total {
+            font-size: 40px;
+        }
+
+        #calculate {
+            background: var(--linear-gradient);
+            border: none;
+            padding: 10px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            animation: pulse 0.3s linear;
+            animation-fill-mode: both;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #c8ced6;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+
+        .checkbox-custom::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #5928a4;
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .checkbox-custom::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            border: 2px solid #5928a4;
+            border-radius: 4px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .checkbox-custom::before {
+            display: inline-block;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        input[type="checkbox"]:checked + .checkbox-custom::before {
+            opacity: 1;
+        }
+
+        .select-state select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 40px;
+            background-color: transparent;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            border: 2px solid #5928a4;
+            border-radius: 4px;
+            outline: none;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        .select-state select::-ms-expand {
+            display: none;
+        }
+
+        .select-state::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-bottom: 2px solid #5928a4;
+            border-right: 2px solid #5928a4;
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #c8ced6;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .popup {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #262626;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        display: none;
+        animation: fadeIn 0.5s;
+        }
+
+        .popup.active {
+        display: block;
+        }
+
+        .popup-message {
+        color: #d1d5db;
+        font-size: 14px;
+        margin-right: 10px;
+        }
+
+        .popup-close-button {
+        background: var(--linear-gradient);
+        border: none;
+        padding: 5px 10px;
+        color: #fff;
+        font-size: 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        animation: pulse 0.4s linear;
+        animation-fill-mode: both;
+        }
+
+        .popup-close-button:hover {
+        opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+        }
+
+
+    </style>
+</head>
+<body>
+    <main id="container">
+        <div id="calculator">
+            <h2>
+                Calculadora de Encargos Trabalhistas
+            </h2>
+
+            <div id="input_box">
+                <div class="input-field">
+                    <label for="salarioBruto">Salário Bruto:</label>
+                    <input type="number" id="salarioBruto">
+                </div>
+
+                <!-- <div class="input-field">
+                    <label for="valeTransporte">Descontar vale-transporte?</label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="valeTransporte" name="valeTransporte" onclick="checkOnlyOne(this)">
+                        <span class="checkbox-custom"></span>
+                        Sim
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="noValeTransporte" name="valeTransporte" onclick="checkOnlyOne(this)">
+                        <span class="checkbox-custom"></span>
+                        Não
+                    </label>
+                </div>
+            CREIO Q N TEM NECESSIDADE MAS SE TIVER TA AI
+            -->
+                
+                <div class="select-state">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" onchange="verificarSalarioMinimo()">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="calculate">
+                Calcular
+            </button>
+
+            <table id="resultTable">
+                <tr>
+                    <th>Encargos</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td>INSS do Empregado</td>
+                    <td id="inssEmpregado">R$ 0,00</td>
+                </tr>
+                <tr>
+                    <td>INSS do Empregador</td>
+                    <td id="inssEmpregador">R$ 0,00</td>
+                </tr>
+                <tr>
+                    <td>FGTS</td>
+                    <td id="fgts">R$ 0,00</td>
+                </tr>
+                <tr>
+                    <td>Depósito Compulsório</td>
+                    <td id="multaFGTS">R$ 0,00</td>
+                </tr>
+                <tr>
+                    <td>Seguro Acidente de Trabalho</td>
+                    <td id="seguroAcidenteTrabalho">R$ 0,00</td>
+                </tr>
+            </table>
+
+            <div id="result">
+                <h4>Total de Encargos (DAE):</h4>
+                <span id="total">
+                    R$ 0,00
+                </span>
+            </div>
+
+            <div id="popup" class="popup">
+                <span id="popupMessage">O valor digitado é menor que o salário mínimo do estado selecionado</span>
+                <!-- <button id="popupCloseButton" class="popup-close-button">Fechar</button> n tem necessidade -->
+            </div>
+            
+        </div>
+    </main>
+    <script>
+        function calcularEncargos() {
+            var salarioBruto = parseFloat(document.getElementById("salarioBruto").value);
+        
+            var inssEmpregado = salarioBruto * 0.0801; // INSS do empregado
+            var inssEmpregador = salarioBruto * 0.08; // INSS do empregador
+            var fgts = salarioBruto * 0.08; // FGTS
+            var depositoCompulsorio = salarioBruto * 0.032; // Depósito compulsório (Multa FGTS)
+            var seguroAcidenteTrabalho = salarioBruto * 0.008; // Seguro para acidentes de trabalho
+    
+            var custoEmpregador =  inssEmpregado  + inssEmpregador + fgts + depositoCompulsorio + seguroAcidenteTrabalho; // Custo para o empregador
+            document.getElementById("total").textContent = "R$ " + custoEmpregador.toFixed(2);
+            
+            document.getElementById("inssEmpregado").textContent = "R$ " + inssEmpregado.toFixed(2);
+            document.getElementById("inssEmpregador").textContent = "R$ " + inssEmpregador.toFixed(2);
+            document.getElementById("fgts").textContent = "R$ " + fgts.toFixed(2);
+            document.getElementById("multaFGTS").textContent = "R$ " + depositoCompulsorio.toFixed(2);
+            document.getElementById("seguroAcidenteTrabalho").textContent = "R$ " + seguroAcidenteTrabalho.toFixed(2);
+        }
+    
+        function checkOnlyOne(checkbox) {
+            var checkboxes = document.getElementsByName('valeTransporte');
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) {
+                    item.checked = false;
+                }
+            });
+        }
+    
+        document.getElementById("calculate").addEventListener("click", verificarSalarioMinimo);
+
+        function verificarSalarioMinimo() {
+            var estadoSelect = document.getElementById("estado");
+            var estado = estadoSelect.options[estadoSelect.selectedIndex].value;
+            var salarioBruto = parseFloat(document.getElementById("salarioBruto").value);
+            var salarioMinimoEstado = obtersalarioMinimo(estado);
+            
+            if (salarioBruto < salarioMinimoEstado) {
+                showPopup();
+            }
+            else {
+                calcularEncargos()
+            }
+        }
+
+        function obtersalarioMinimo(estado) {
+            var salarioMinimo = 0;
+            
+            switch (estado) {
+                case "AC":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "AL":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "AP":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "AM":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "BA":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "CE":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "DF":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "ES":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "GO":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "MA":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "MT":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "MS":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "MG":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "PA":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "PB":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "PR":
+                    salarioMinimo = 1871.74; //tem salario proprio
+                    break;
+                case "PE":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "PI":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "RJ":
+                    salarioMinimo = 1320.00; //n definido
+                    break;
+                case "RN":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "RS":
+                    salarioMinimo = 1443.94; //tem salario proprio
+                    break;
+                case "RO":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "RR":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "SC":
+                    salarioMinimo = 1521.00; //tem salario proprio
+                    break;
+                case "SP":
+                    salarioMinimo = 1476.75; //tem salario proprio
+                    break;
+                case "SE":
+                    salarioMinimo = 1320.00;
+                    break;
+                case "TO":
+                    salarioMinimo = 1320.00;
+                    break;
+                default:
+                    salarioMinimo = 0;
+                    break;
+            }
+            
+            return salarioMinimo;
+        }
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.classList.add('active');
+            setTimeout(hidePopup, 3000); // Define o tempo de 3 segundos (3000 milissegundos)
+        }
+
+        function hidePopup() {
+            var popup = document.getElementById('popup');
+            popup.classList.remove('active');
+        }
+
+        document.getElementById('popupCloseButton').addEventListener('click', hidePopup);
+
+
+    </script>
+</body>
+</html>
