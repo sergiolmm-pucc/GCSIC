@@ -15,10 +15,14 @@ const endpoints = {
 
 const server = express()
 
-server.listen(PORT, () => console.log('Escutando em ${PORT}'));
+server.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 server.get('/', function(req,res){
     res.send("Site de tecnologia 1");
+});
+
+server.get('/nf-produto', function(req,res){
+    res.sendFile("views/nf-produto.html", {root: __dirname });
 });
 
 server.get('/ht', (req,res) => res.sendFile(INDEX, { root: __dirname}));

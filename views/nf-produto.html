@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora de Impostos - NF de Serviço</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .input-group {
+        margin-bottom: 10px;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      #resultado {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calculadora de Impostos - NF de Serviço</h1>
+
+    <div class="input-group">
+      <label for="valor-servico">Valor do Serviço:</label>
+      <input
+        type="number"
+        id="valor-servico"
+        placeholder="Informe o valor do serviço"
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="taxa-imposto">Taxa de Imposto (%):</label>
+      <input
+        type="number"
+        id="taxa-imposto"
+        placeholder="Informe a taxa de imposto"
+      />
+    </div>
+
+    <button onclick="calcularImposto()">Calcular Imposto</button>
+
+    <div id="resultado"></div>
+
+    <script>
+      function calcularImposto() {
+        // pega valores dos inputs
+        var valorServico = document.getElementById("valor-servico").value;
+        var taxaImposto = document.getElementById("taxa-imposto").value;
+
+        if (valorServico && taxaImposto) {
+          var imposto = (valorServico * taxaImposto) / 100;
+          document.getElementById("resultado").innerText =
+            "Imposto a pagar: R$ " + imposto.toFixed(2);
+        } else {
+          document.getElementById("resultado").innerText =
+            "Por favor, preencha todos os campos.";
+        }
+      }
+    </script>
+  </body>
+</html>
