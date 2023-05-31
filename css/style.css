@@ -5,13 +5,23 @@ body{
 
 header{ /* Topo */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 10vh;
   background-color: #303659;
   color: white;
   font-size: 40px;
+}
+
+header img{
+  width: 8vh;
+  height: 8vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 1vh;
+  margin-left: 2vw;
 }
 
 main{ /* Conteúdo */
