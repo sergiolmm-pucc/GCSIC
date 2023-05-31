@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Imposto</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia%22%3E">
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Imposto</h1>
+
+    <form id="calculadoraForm">
+      <div class="input-container">
+        <label for="empresa">Nome da Empresa:</label>
+        <input type="text" id="empresa" name="empresa" placeholder="Exemplo: Triplex" required>
+      </div>
+
+      <div class="input-container">
+        <label for="preco">Preço do Serviço:</label>
+        <input type="number" id="preco" name="preco" min="0.00" max="100000000.00" step="0.01" placeholder="0.00" required>
+      </div>
+
+      <div class="input-containerr">
+        <label for="cidade">Cidade:</label>
+        <select id="cidade" name="cidade" required>
+          <option value="">Selecione a cidade</option>
+          <option value="sao_paulo">São Paulo</option>
+          <option value="campinas">Campinas</option>
+        </select>
+      </div>
+
+      <button type="submit">Calcular Imposto</button>
+    </form>
+
+    <div id="resultado"></div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
