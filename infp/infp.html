@@ -8,12 +8,33 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 20px;
-      background-color: #f5f5f5;
+      background-color: #808080;
     }
     
     h1 {
       text-align: center;
-      color: #333;
+      color: #d4d4d4;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: rgb(255, 255, 255);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-container {
+      flex: 1;
+      margin-right: 20px;
+    }
+    
+    .result-container {
+      flex: 1;
     }
     
     label {
@@ -39,6 +60,11 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #45a049;
     }
     
     #invoice {
@@ -67,23 +93,29 @@
 <body>
   <h1>Gerador de Nota Fiscal</h1>
   
-  <label for="region">Região (Estado):</label>
-  <select id="region" onchange="updateTax()">
-    <option value="SP" data-tax="0.08">São Paulo (8%)</option>
-    <option value="RJ" data-tax="0.06">Rio de Janeiro (6%)</option>
-    <option value="MG" data-tax="0.07">Minas Gerais (7%)</option>
-    <!-- Adicione mais opções de estados, se necessário -->
-  </select>
-  
-  <label for="product-name">Nome do Produto:</label>
-  <input type="text" id="product-name">
-  
-  <label for="product-price">Preço do Produto:</label>
-  <input type="text" id="product-price">
-  
-  <button onclick="generateInvoice()">Gerar Nota Fiscal</button>
-  
-  <div id="invoice"></div>
+  <div class="container">
+    <div class="form-container" style="padding-right: 15px;">
+      <label for="region">Região (Estado):</label>
+      <select id="region" onchange="updateTax()">
+        <option value="SP" data-tax="0.08">São Paulo (8%)</option>
+        <option value="RJ" data-tax="0.06">Rio de Janeiro (6%)</option>
+        <option value="MG" data-tax="0.07">Minas Gerais (7%)</option>
+        <!-- Adicione mais opções de estados, se necessário -->
+      </select>
+      
+      <label for="product-name">Nome do Produto:</label>
+      <input type="text" id="product-name">
+      
+      <label for="product-price">Preço do Produto:</label>
+      <input type="text" id="product-price">
+      
+      <button style="margin-top: 15px;" onclick="generateInvoice()">Gerar Nota Fiscal</button>
+    </div>
+    
+    <div class="result-container">
+      <div id="invoice"></div>
+    </div>
+  </div>
   
   <script>
     function updateTax() {
@@ -111,7 +143,7 @@
       invoiceElement.innerHTML = `
         <h2>Nota Fiscal</h2>
         <p>Produto: ${productName}</p>
-        <p>Região: ${region} <span id="tax-label">(${(tax * 100)}%)</span></p>
+        <p>Região: ${region} <span id="tax-label">(${(tax * 100).toFixed(2)}%)</span></p>
         <p>Imposto: ${tax * 100}%</p>
         <p>Preço Total: R$ ${totalPrice.toFixed(2)}</p>
       `;
