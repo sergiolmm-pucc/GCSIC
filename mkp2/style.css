@@ -1,0 +1,92 @@
+@import "reset.css";
+@import "variables.css";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+:root {
+    color: var(--gray-300);
+    font-family: "Nunito", Arial, Helvetica, sans-serif;
+
+
+}
+
+.root {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background-color: var(--gray-900);
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .selectable {
+    -webkit-touch-callout: unset;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+.app-container {
+    max-width: 300px;
+
+    padding: 32px;
+
+    background-color: var(--gray-700);
+
+    border: 1px solid var(--gray-600);
+
+    border-radius: 2px;
+
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+h1 {
+    font-size: 32px;
+    /* margin-bottom: 16px; */
+    /* font-weight: 500; */
+}
+
+* {
+    appearance: none;
+  }
+  
+  *:focus {
+    outline: none;
+  }
+
+input[type='text'],
+input[type='number'] {
+  width: 100%;
+    height: 32px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  color: var(--gray-300);
+  font-size: 20px;
+  font-family: inherit;
+  background-color: var(--gray-900);
+  transition-property: background-color, border, backdrop-filter;
+  transition-duration: 0.1s;
+}
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-filter: invert(1) contrast(0.66) opacity(0.5) brightness(1.25);
+  }
