@@ -19,7 +19,7 @@ const server = express()
 server.listen(PORT, () => console.log('Escutando em ${PORT}'));
 
 server.get('/', function(req,res){
-    res.sendFile(base.html);
+    res.sendFile('base.html');
 });
 
 server.get('/ht', (req,res) => res.sendFile(INDEX, { root: __dirname}));
