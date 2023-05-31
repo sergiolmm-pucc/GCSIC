@@ -50,12 +50,13 @@ main .leftSide input{
   border: 0;
   padding: 10px;
   font-size: 18px;
-  color: grey;
+  color: white;
+  background-color: #171E3B;
 }
 
 main .leftSide input:focus{
   border: 1px solid #4A9BFB;
-  color: #4A9BFB;
+  color: lightgray;
 }
 
 main .rightSide{ /* Visual dos Resultados */
