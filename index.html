@@ -1,33 +1,78 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
     <head>
-        <title>On Site Teste - 25-05</title>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Calculo de MarkUp</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+
     </head>
+
     <body>
-        <h1> Teste em Aula
-            20038048  
-            21001718
-            20009122
-            21011817
-            21980446
-            20130175
-            18099077
-            21002601
-            21003480
-            21003125
-            21004010
-            18079053
-            21002558
-        </h1>
-        <h2>Sergio</h2>
-        <button id="sendbutton" value="teste" onClick="alerta()">Click Aqui</button>
-        <br>
-        <h1>
-            <p id="demo"></p>
-        </h1>
-        <script>
-            function alerta() {                
-                document.getElementById("demo").innerHTML = "Hello World";
-            }
-        </script>
+        
+        <header>
+            <h1>Calculo de MarkUp</h1>
+        </header>
+
+        <main>
+
+            <div class="leftSide">
+
+                <p>Por favor preencha os campos abaixo para efetuar o calculo!</p>
+
+                <label for="fixed_expenses">Despesas Fixas</label>
+                <input type="number" id="fixed_expenses">
+
+                <label for="variable_expenses">Despesas Variaveis</label>
+                <input type="number" id="variable_expenses">
+                
+                <label for="profit">Lucro Desejado</label>
+                <input type="number" id="profit">
+
+            </div>
+
+            <div class="rightSide">
+
+                <div class="results">
+                    <p class="result_text">O MarkUp é de:</p>
+                    <p class="result" id="result">0</p>
+                </div>
+                
+
+                <div class="action">
+                    <button class="clear" id="clear">limpar</button>
+                    <button class="calculate" id="caculate">calcular</button>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer>
+
+            <h3>Feito por :</h3>
+            <ul class="members">
+                <li>Beatriz Meloni</li>
+                <li>Bruno Tomas Lemes</li>
+                <li>Guilherme Azevedo</li>
+                <li>João Pedro Zanholo</li>
+            </ul>
+
+            <p>&copy; Todos os direitos reservados. </p>
+
+        </footer>
+
+        <script type="text/javascript" src="index.js"></script>
     </body>
+
 </html>
