@@ -24,13 +24,13 @@ server.get('/', function(req,res){
 
 server.get('/ht', (req,res) => res.sendFile(INDEX, { root: __dirname}));
 
-server.get('/ETEC', (req, res) => res.sendFile(endpoints.etec));
-server.get('/ETEC2', (req, res) => res.sendFile(endpoints.etec2));
-server.get('/INFS', (req, res) => res.sendFile(endpoints.infs));
-server.get('/INFS2', (req, res) => res.sendFile(endpoints.infs2));
-server.get('/INFP', (req, res) => res.sendFile(endpoints.infp));
-server.get('/INFP2', (req, res) => res.sendFile(endpoints.infp2));
-server.get('/MKP', (req, res) => res.sendFile(endpoints.mkp));
-server.get('/MKP2', (req, res) => res.sendFile(endpoints.mkp2));
-server.get('/TESTE', (req, res) => res.sendFile(endpoints.teste));
+server.get('/ETEC', (req, res) => res.sendFile(endpoints.etec, { root: __dirname}));
+server.get('/ETEC2', (req, res) => res.sendFile(endpoints.etec2, { root: __dirname}));
+server.get('/INFS', (req, res) => res.sendFile(endpoints.infs, { root: __dirname}));
+server.get('/INFS2', (req, res) => res.sendFile(endpoints.infs2, { root: __dirname}));
+server.get('/INFP', (req, res) => res.sendFile(endpoints.infp, { root: __dirname}));
+server.get('/INFP2', (req, res) => res.sendFile(endpoints.infp2, { root: __dirname}));
+server.get('/MKP', (req, res) => res.sendFile(endpoints.mkp, { root: __dirname}));
+server.get('/MKP2', (req, res) => res.sendFile(endpoints.mkp2, { root: __dirname}));
+server.get('/TESTE', (req, res) => res.sendFile(endpoints.teste, { root: __dirname}));
 server.get('/MKP2calc', markupGet)
