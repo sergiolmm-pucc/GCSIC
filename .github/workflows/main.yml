@@ -1,10 +1,8 @@
 name: Aula de GCS (PUC CAMPINAS)
 run-name: ${{ github.actor }} Projeto de GCS
 
-on: 
-  push:
-    branches:
-      - main
+on: [push]
+ 
 
 jobs:
   primeiro:
@@ -57,6 +55,7 @@ jobs:
 
 
   tests:
+    needs: Segundo_exemplo
     runs-on: ubuntu-latest
     name: Run Selenium Tests
     steps:
