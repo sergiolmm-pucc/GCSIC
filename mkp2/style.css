@@ -10,6 +10,7 @@
 
 html {
   background-color: black;
+  overflow: hidden;
 }
 
 @keyframes aneurysm {
@@ -30,20 +31,20 @@ html {
     rotate: 0deg;
   }
   30% {
-    filter: blur(64px) saturate(5);
+    filter: blur(64px) saturate(5) drop-shadow(0 0 256px white);
     rotate: 500deg;
     scale: 1;
     translate: 0px 0vh;
   }
   50% {
-    filter: blur(256px) saturate(5);
-    rotate: 4000deg;
+    filter: blur(256px) saturate(5) drop-shadow(0 0 1024px white);
+    rotate: 2500deg;
     scale: 0;
     translate: 0px 50vh;
   }
   100% {
-    filter: blur(256px) saturate(5);
-    rotate: 4000deg;
+    filter: blur(256px) saturate(5) drop-shadow(0 0 1024px white);
+    rotate: 2500deg;
     scale: 0;
     translate: 0px 50vh;
   }
