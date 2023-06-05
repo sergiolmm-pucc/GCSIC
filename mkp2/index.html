@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cálculo de Markup</title>
-        <meta name="description" content="Cálculo de Markup DAVID MEGUIMI CINJO PRODUÇÕES MIXAGENS">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="root unselectable">
-            <div class="app-container">
-                <h1>Markup</h1>
-                <p>Utilize esta ferramenta para calcular o markup de um produto.</p>
-                <input type="number" placeholder="Preço de custo">
-                <input type="number" placeholder="Preço de venda">
-            </div>
-        </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Cálculo de Markup</title>
+    <meta
+      name="description"
+      content="Cálculo de Markup DAVID MEGUIMI CINJO PRODUÇÕES MIXAGENS"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="root unselectable">
+      <div class="app-container">
+        <p>Utilize esta ferramenta para calcular o markup de um produto.</p>
+        <input id="costInput" type="number" placeholder="Preço de custo (R$)" />
+        <input id="saleInput" type="number" placeholder="Preço de venda (R$)" />
+        <h2>
+          Markup:&nbsp;
+          <span id="markupText"></span>
+        </h2>
+      </div>
+    </div>
 
-        <script src="main.js" async defer></script>
-    </body>
+    <script src="main.js" async defer></script>
+  </body>
 </html>
