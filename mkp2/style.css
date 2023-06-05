@@ -9,7 +9,8 @@
 }
 
 body {
-  background-image: url("./bg.png");
+  background-color: var(--gray-900);
+  /* background-image: url("./bg.png"); */
 }
 
 .root {
@@ -24,8 +25,6 @@ body {
   justify-content: center;
 
   overflow: hidden;
-
-  /* background-color: var(--gray-900); */
 }
 
 .unselectable {
