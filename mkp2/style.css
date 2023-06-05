@@ -7,6 +7,11 @@
   color: var(--gray-300);
   font-family: "Nunito", Arial, Helvetica, sans-serif;
 }
+
+html {
+  background-color: black;
+}
+
 @keyframes aneurysm {
   0% {
     filter: none;
