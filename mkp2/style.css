@@ -1,82 +1,94 @@
 @import "reset.css";
 @import "variables.css";
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
 
 :root {
-    color: var(--gray-300);
-    font-family: "Nunito", Arial, Helvetica, sans-serif;
+  color: var(--gray-300);
+  font-family: "Nunito", Arial, Helvetica, sans-serif;
+}
 
-
+body {
+  background-image: url("./bg.png");
 }
 
 .root {
-    height: 100vh;
+  position: fixed;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100vh;
 
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    background-color: var(--gray-900);
+  overflow: hidden;
+
+  /* background-color: var(--gray-900); */
 }
 
 .unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .selectable {
-    -webkit-touch-callout: unset;
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-  }
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.selectable {
+  -webkit-touch-callout: unset;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 .app-container {
-    max-width: 300px;
+  max-width: 270px;
 
-    padding: 32px;
+  padding: 32px;
 
-    background-color: var(--gray-700);
+  background-color: var(--gray-700);
 
-    border: 1px solid var(--gray-600);
+  border: 1px solid var(--gray-600);
 
-    border-radius: 2px;
+  border-radius: 2px;
 
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 h1 {
-    font-size: 32px;
-    /* margin-bottom: 16px; */
-    /* font-weight: 500; */
+  font-size: 32px;
+  /* margin-bottom: 16px; */
+  /* font-weight: 500; */
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 16px;
 }
 
 * {
-    appearance: none;
-  }
-  
-  *:focus {
-    outline: none;
-  }
+  appearance: none;
+}
 
-input[type='text'],
-input[type='number'] {
-  width: 100%;
-    height: 32px;
+*:focus {
+  outline: none;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: calc(100% - 16px);
+  height: 32px;
+  margin-bottom: 8px;
   border-radius: 4px;
   border: 1px solid transparent;
   padding: 4px 8px;
@@ -87,6 +99,32 @@ input[type='number'] {
   transition-property: background-color, border, backdrop-filter;
   transition-duration: 0.1s;
 }
-input[type='number']::-webkit-inner-spin-button {
-    -webkit-filter: invert(1) contrast(0.66) opacity(0.5) brightness(1.25);
-  }
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-filter: invert(1) contrast(0.66) opacity(0.5) brightness(1.25);
+}
+
+h2:has(#markupText) {
+  font-family: inherit;
+  font-size: 24px;
+  color: var(--gray-300);
+  border: 1px solid var(--gray-500);
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: calc(100% - 32px);
+  margin-top: 8px;
+  margin-inline: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#markupText {
+  margin-left: auto;
+
+  background-color: var(--gray-800);
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  font-family: "IBM Plex Mono", monospace;
+}
