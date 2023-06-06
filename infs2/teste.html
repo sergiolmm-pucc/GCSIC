@@ -20,7 +20,7 @@
         <input type="number" id="preco" name="preco" min="0.00" max="100000000.00" step="0.01" placeholder="0.00" required>
       </div>
 
-      <div class="input-containerr">
+      <div class="input-container">
         <label for="cidade">Cidade:</label>
         <select id="cidade" name="cidade" required>
           <option value="">Selecione a cidade</option>
@@ -36,5 +36,21 @@
   </div>
   
   <script src="script.js"></script>
+  <script>
+    document.getElementById("calculadoraForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+    
+      const empresa = document.getElementById("empresa").value;
+      const valor = parseFloat(document.getElementById("preco").value);
+      const cidade = document.getElementById("cidade").value;
+    
+      const { imposto, taxa, total } = calcularImpostos(empresa, valor, cidade);
+    
+      const resultadoElement = document.getElementById("resultado");
+      resultadoElement.innerHTML = `<p>Empresa: ${empresa}</p>
+                                     <p>Imposto a pagar (${taxa}%): R$ ${imposto.toFixed(2)}</p>
+                                     <p>Total: R$ ${total.toFixed(2)}</p>`;
+    });
+    </script>    
 </body>
 </html>

@@ -10,13 +10,7 @@ function calcularImpostoCampinas(precoServico) {
   return imposto;
 }
 
-function calcularImpostos(event) {
-  event.preventDefault();
-
-  const empresa = document.getElementById("empresa").value;
-  const valor = parseFloat(document.getElementById("preco").value);
-  const cidade = document.getElementById("cidade").value;
-
+function calcularImpostos(empresa, valor, cidade) {
   let imposto;
   let taxa;
 
@@ -30,10 +24,7 @@ function calcularImpostos(event) {
 
   const total = valor + imposto;
 
-  const resultadoElement = document.getElementById("resultado");
-  resultadoElement.innerHTML = `<p>Empresa: ${empresa}</p>
-                                 <p>Imposto a pagar (${taxa}%): R$ ${imposto.toFixed(2)}</p>
-                                 <p>Total: R$ ${total.toFixed(2)}</p>`;
+  return { empresa, imposto, taxa, total };
 }
 
-document.getElementById("calculadoraForm").addEventListener("submit", calcularImpostos);
+module.exports = { calcularImpostoSaoPaulo, calcularImpostoCampinas, calcularImpostos };
