@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <!--
+      This is the page head - it contains info the browser uses
+      Like the title, which appears on the browser tab but not inside the page
+      Further down you'll see the content that displays in the page
+    -->
+    <title>CALCULO ETEC</title>
+
+    <!-- The website stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- The website JavaScript file -->
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <ul class="topnav">
+        <li><a class="active" href="./index.html">Home</a></li>
+        <li><a href="./page2.html">Calculo ETEC</a></li>
+      </ul>
+    </header>
+    <div>
+      <div class="bgimg2">
+        <div class="middle">
+          <h1>CALCULO ETEC</h1>
+          <hr>
+        </div>
+        
+      </div>
+
+      <div class="inputContainer">
+        <form action="/action_page.php">
+          
+          <label for="country">Selecione o Estado</label>
+          <select id="country" name="country">
+            <option value="outro">Outro</option>
+            <option class="estados" value="parana">Paraná</option>
+            <option class="estados" value="rio_de_janeiro">Rio de Janeiro</option>
+            <option class="estados" value="rio_grande_do_sul">Rio Grande do Sul</option>
+            <option class="estados" value="santa_catarina">Santa Catarina</option>
+            <option class="estados" value="sao_paulo">São Paulo</option>
+          </select>
+          
+          <label for="fname">Salário Bruto: </label>
+          <input type="text" name="firstname" placeholder="Seu salário bruto..." id="txtsalario">
+          
+          <input type="button" value="Calcular" onclick="calculoEmpregada()">
+          
+        </form>
+      </div>
+        <h1>Tabela Resultado</h1>
+
+        <table id="customers">
+          <tr>
+            <th>Encargos</th>
+            <th>(%)</th>
+            <th>Valor</th>
+          </tr>
+          <tr>
+            <td>Salário Bruto</td>
+            <td>100%</td>
+            <td id="tdSBruto">0</td>
+          </tr>
+          <tr>
+            <td>INSS Empregador</td>
+            <td>8%</td>
+            <td id="tdINSS">0</td>
+          </tr>
+          <tr>
+            <td>FGTS</td>
+            <td>8%</td>
+            <td id="tdFGTS">0</td>
+          </tr>
+          <tr>
+            <td>Multa FGTS</td>
+            <td>3,2%</td>
+            <td id="tdMultaFGTS">0</td>
+          </tr>
+          <tr>
+            <td>Acidente de Trabalho</td>
+            <td>0,8%</td>
+            <td id="tdAcidenteTrabalho">0</td>
+          </tr>
+          <tr>
+            <td>Total de Encargos (DAE)</td>
+            <td></td>
+            <td id="tdDAE">0</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td></td>
+            <td id="tdTotal">0</td>
+          </tr>
+        </table>
+    </div>
+    <div id="res">
+      
+    </div>
+    <footer class="footer">
+    </footer>
+  </body>
+</html>
