@@ -1,4 +1,4 @@
-const { calcularImpostoSaoPaulo, calcularImpostoCampinas, calcularImpostos } = require('./script.js');
+const { calcularImpostoSaoPaulo, calcularImpostoCampinas, calcularImpostos } = require('./script');
 
 describe('calcularImpostoSaoPaulo', () => {
   test('Deve calcular corretamente o imposto para São Paulo', () => {
