@@ -5,7 +5,7 @@ const {
   calcularAliquotaISS,
   calcularAliquotaIRPJ,
   calcularImpostos
-} = require('./impostos');
+} = require('./main');
 
 describe('Teste das funções de cálculo de impostos', () => {
   test('Teste do cálculo da alíquota de PIS', () => {
