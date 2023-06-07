@@ -50,6 +50,7 @@ jobs:
           fail-on-error: false
       - name: Enviando ao Glitch
         uses: kanadgupta/glitch-sync@main
+        if: success() || failure()    # run this step even if previous step failed
         with:
           auth-token: '${{ secrets.authToken }}' 
           project-id: '${{ secrets.projectId }}'
