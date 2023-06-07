@@ -1,4 +1,4 @@
-const { markup } = require('./markup2')
+const {markup} = require('./markup2.js')
 
 describe('Função de cálculo de markup', () => {
     test('Caso custo inválido (não-número)', () => {

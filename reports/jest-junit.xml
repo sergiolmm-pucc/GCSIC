@@ -1,21 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.96">
-  <testsuite name="nf-produto.test.js" errors="0" failures="0" skipped="0" timestamp="2023-05-30T01:22:57" time="1.12" tests="1">
-    <testcase classname="" name="Calculo de imposto deve estar correto" time="0.004">
+<testsuites name="jest tests" tests="11" failures="1" errors="0" time="2.553">
+  <testsuite name="nf-produto.test.js" errors="0" failures="0" skipped="0" timestamp="2023-06-07T12:52:42" time="1.385" tests="1">
+    <testcase classname="" name="Calculo de imposto deve estar correto" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="multiply.test.js" errors="0" failures="0" skipped="0" timestamp="2023-05-30T01:22:57" time="1.161" tests="2">
-    <testcase classname="" name="Caso so um numero passado" time="0.004">
+  <testsuite name="infs2\calcularImposto.test.js" errors="0" failures="0" skipped="0" timestamp="2023-06-07T12:52:42" time="1.395" tests="4">
+    <testcase classname="calcularImpostoSaoPaulo" name="Deve calcular corretamente o imposto para São Paulo" time="0.002">
     </testcase>
-    <testcase classname="" name="Caso dois numeros sejam passados corretamente" time="0.002">
+    <testcase classname="calcularImpostoCampinas" name="Deve calcular corretamente o imposto para Campinas" time="0">
+    </testcase>
+    <testcase classname="calcularImpostos" name="Deve calcular corretamente os impostos para São Paulo" time="0.001">
+    </testcase>
+    <testcase classname="calcularImpostos" name="Deve calcular corretamente os impostos para Campinas" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="markup2.test.js" errors="0" failures="0" skipped="0" timestamp="2023-05-30T01:22:57" time="1.21" tests="3">
-    <testcase classname="Função de cálculo de markup" name="Caso custo inválido (não-número)" time="0.025">
+  <testsuite name="multiply.test.js" errors="0" failures="0" skipped="0" timestamp="2023-06-07T12:52:42" time="1.4" tests="2">
+    <testcase classname="" name="Caso so um numero passado" time="0.002">
     </testcase>
-    <testcase classname="Função de cálculo de markup" name="Caso preço de venda inválido (não-número)" time="0.004">
+    <testcase classname="" name="Caso dois numeros sejam passados corretamente" time="0.001">
     </testcase>
-    <testcase classname="Função de cálculo de markup" name="Caso preço e custo válidos" time="0.002">
+  </testsuite>
+  <testsuite name="infs\calcularImposto.test.js" errors="0" failures="1" skipped="0" timestamp="2023-06-07T12:52:42" time="1.423" tests="1">
+    <testcase classname="Teste das funções de cálculo de impostos" name="Teste do cálculo da alíquota de PIS" time="0.001">
+      <failure>TypeError: calcImpostoNotaServico is not a function
+    at Object.calcImpostoNotaServico (C:\Users\19087329\GCSIC\infs\calcularImposto.test.js:7:12)
+    at Promise.then.completed (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\utils.js:293:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\utils.js:226:10)
+    at _callCircusTest (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\run.js:297:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\run.js:233:3)
+    at _runTestsForDescribeBlock (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\run.js:135:9)
+    at _runTestsForDescribeBlock (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\run.js:130:9)
+    at run (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\run.js:68:3)
+    at runAndTransformResultsToJestFormat (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\19087329\GCSIC\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\19087329\GCSIC\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\19087329\GCSIC\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\19087329\GCSIC\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="mkp2\markup2.test.js" errors="0" failures="0" skipped="0" timestamp="2023-06-07T12:52:42" time="1.544" tests="3">
+    <testcase classname="Função de cálculo de markup" name="Caso custo inválido (não-número)" time="0.014">
+    </testcase>
+    <testcase classname="Função de cálculo de markup" name="Caso preço de venda inválido (não-número)" time="0.001">
+    </testcase>
+    <testcase classname="Função de cálculo de markup" name="Caso preço e custo válidos" time="0">
     </testcase>
   </testsuite>
 </testsuites>

@@ -20,16 +20,6 @@ const markup = (custo, preçoVenda) => {
     return (preçoVenda - custo) / custo
 }
 
-exports.markup = markup
-
-exports.markupGet = (req, res) => {
-    const custo = Number(req.query.custo)
-    const preçoVenda = Number(req.query.preçoVenda)
-    const resultado = markup(custo, preçoVenda)
-
-    res.send({
-        custo,
-        preçoVenda,
-        markupPorCento: `${resultado * 100}%`
-    })
-}
+try {
+module.exports = { markup }
+} catch {}

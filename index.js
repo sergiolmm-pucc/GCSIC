@@ -1,5 +1,5 @@
 var express = require('express')
-const { markupGet } = require('./mkp2/markup2')
+
 const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
 const endpoints = {
@@ -37,4 +37,4 @@ server.get('/INFP2', (req, res) => res.sendFile(endpoints.infp2, { root: __dirna
 server.get('/MKP', (req, res) => res.sendFile(endpoints.mkp, { root: __dirname}));
 server.use('/MKP2', express.static('mkp2'))
 server.get('/TESTE', (req, res) => res.sendFile(endpoints.teste, { root: __dirname}));
-server.get('/MKP2calc', markupGet)
+
