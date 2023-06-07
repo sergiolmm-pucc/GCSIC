@@ -74,5 +74,22 @@
 
     <script src="https://cdn.jsdelivr.net/npm/inputmask/dist/inputmask.min.js"></script>
     <script src="./main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      var valorServico = document.getElementById('valor-servico');
+      var inputMaskOptions = {
+        prefix: 'R$ ',
+        groupSeparator: '.',
+        radixPoint: ',',
+        allowNegative: false,
+        autoGroup: true,
+        digits: 2,
+        digitsOptional: false,
+        rightAlign: false,
+        unmaskAsNumber: true
+      };
+        new Inputmask('currency', inputMaskOptions).mask(valorServico);
+      });
+    </script>
   </body>
 </html>

@@ -1,19 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var valorServico = document.getElementById('valor-servico');
-  var inputMaskOptions = {
-    prefix: 'R$ ',
-    groupSeparator: '.',
-    radixPoint: ',',
-    allowNegative: false,
-    autoGroup: true,
-    digits: 2,
-    digitsOptional: false,
-    rightAlign: false,
-    unmaskAsNumber: true
-  };
-  new Inputmask('currency', inputMaskOptions).mask(valorServico);
-});
-
 function calcularImpostos() {
   const valorServicoInput = document.getElementById('valor-servico');
   const valorServicoRaw = valorServicoInput.inputmask.unmaskedvalue(); // Get the raw unmasked value
