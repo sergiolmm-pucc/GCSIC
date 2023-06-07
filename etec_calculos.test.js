@@ -1,4 +1,4 @@
-const { calcularEncargos, verificarSalarioMinimo, obtersalarioMinimo } = require('../calcularEncargos.js');
+const { calcularEncargos, verificarSalarioMinimo, obtersalarioMinimo } = require('./calculosEncargos.js');
 
 test('Teste de cálculo de encargos', () => {
   const salarioBruto = 2000;
