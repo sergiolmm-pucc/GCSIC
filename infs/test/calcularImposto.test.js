@@ -1,4 +1,4 @@
-const { calcularAliquotaCSLL } = require("../calculoNotaServico");
+const { calcularAliquotaCSLL } = require("../calcularNotaServico");
 
 describe('Teste das funções de cálculo de impostos', () => {
   test('Teste do cálculo da alíquota de PIS', () => {
