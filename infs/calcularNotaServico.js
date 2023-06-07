@@ -2,8 +2,17 @@ function calcularImpostos() {
   const valorServicoInput = document.getElementById('valor-servico');
   const valorServicoRaw = valorServicoInput.inputmask.unmaskedvalue(); // Get the raw unmasked value
   const valorServicoString = String(valorServicoRaw); // Convert to string
-  const valorServico = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point  
+  const valorServico = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point
   const tipoEmpresa = document.getElementById('tipo-empresa').value;
+
+  if(!isValidValor(valorServico)){
+    return;
+  }
+
+  if(!isValidEmpresa(empresa)){
+    return;
+  }
+
   const atividadeEspecial = document.getElementById('atividade-especial').checked;
   const tipoAtividade = document.getElementById('tipo-atividade').value;
   const faixaFaturamento = parseInt(document.getElementById('faixa-faturamento').value);
@@ -92,4 +101,24 @@ function calcularAliquotaCSLL(tipoEmpresa, faixaFaturamento) {
   return 0.09; // Alíquota padrão para CSLL (empresas em geral)
 }
 
-exports.main = this.main;
+function isValidValor(valor){
+  if(isNaN(valor)){
+    return alert("Valor do Serviço deve ser númerico");
+  }
+}
+
+function isValidEmpresa(empresa){
+  switch (empresa){
+    case "microempresa": {
+      return calcularAliquotaCSLL(empresa, faturamento);
+    }
+    case "empresa-geral": {
+      return calcularAliquotaCSLL(empresa, faturamento);
+    }
+    default:{
+      return alert("Tipo de Empresa Inválido")
+    }
+  }
+}
+
+module.exports = { calcularImpostos, calcularAliquotaCOFINS, calcularAliquotaCSLL, calcularAliquotaPIS };
