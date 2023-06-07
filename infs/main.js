@@ -91,3 +91,5 @@ function calcularAliquotaCSLL(tipoEmpresa, faixaFaturamento) {
 
   return 0.09; // Alíquota padrão para CSLL (empresas em geral)
 }
+
+exports.main = this.main;
