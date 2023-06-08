@@ -3,22 +3,15 @@ function calcularImpostos() {
   const valorServicoRaw = valorServicoInput.inputmask.unmaskedvalue(); // Get the raw unmasked value
   const valorServicoString = String(valorServicoRaw); // Convert to string
   const valorServico = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point
-  const tipoEmpresa = document.getElementById('tipo-empresa').value;
 
   if(!isValidValor(valorServico)){
     return;
   }
 
-  if(!isValidEmpresa(empresa)){
-    return;
-  }
-
-  const atividadeEspecial = document.getElementById('atividade-especial').checked;
-  const tipoAtividade = document.getElementById('tipo-atividade').value;
   const faixaFaturamento = parseInt(document.getElementById('faixa-faturamento').value);
 
-  const aliquotaPIS = calcularAliquotaPIS(atividadeEspecial, tipoAtividade);
-  const aliquotaCOFINS = calcularAliquotaCOFINS(atividadeEspecial, tipoAtividade);
+  const aliquotaPIS = calcularAliquotaPIS(regimePIS);
+  const aliquotaCOFINS = calcularAliquotaCOFINS(regimeCOFINS);
   const aliquotaCSLL = calcularAliquotaCSLL(tipoEmpresa, faixaFaturamento);
   const aliquotaISS = 0.05; // Alíquota fixa de 5% para ISS
   const aliquotaIRPJ = 0.15; // Alíquota fixa de 15% para IRPJ
@@ -41,83 +34,63 @@ function calcularImpostos() {
   document.getElementById('valor-total').textContent = `Valor Total (Serviço + Impostos): R$ ${valorTotal.toFixed(2)}`;
 }
 
-function calcularAliquotaPIS(atividadeEspecial, tipoAtividade) {
-  if (atividadeEspecial) {
-    if (tipoAtividade === 'limpeza-conservacao') {
-      return 0.0176; // Alíquota diferenciada para serviços de limpeza e conservação
-    } else if (tipoAtividade === 'seguranca') {
-      return 0.0176; // Alíquota diferenciada para serviços de segurança
-    }
+function calcularAliquotaPIS(regimePIS) {
+  if (regimePIS === 'cumulativo') {
+    return 0.0065; // Alíquota para regime cumulativo do PIS
+  } else{
+    return 0.0165; // Alíquota para regime não cumulativo do PIS
   }
-
-  return 0.0065; // Alíquota padrão para PIS
 }
 
-function calcularAliquotaCOFINS(atividadeEspecial, tipoAtividade) {
-  if (atividadeEspecial) {
-    if (tipoAtividade === 'limpeza-conservacao') {
-      return 0.0830; // Alíquota diferenciada para serviços de limpeza e conservação
-    } else if (tipoAtividade === 'seguranca') {
-      return 0.0830; // Alíquota diferenciada para serviços de segurança
-    }
+function calcularAliquotaCOFINS(regimeCOFINS) {
+  if (regimeCOFINS === 'cumulativo') {
+    return 0.03; // Alíquota para regime cumulativo do COFINS
+  } else{
+    return 0.076; // Alíquota para regime não cumulativo do COFINS
   }
-
-  return 0.03; // Alíquota padrão para COFINS
 }
 
 function calcularAliquotaCSLL(tipoEmpresa, faixaFaturamento) {
-  if (tipoEmpresa === 'microempresa') {
-    if (faixaFaturamento <= 180000) {
-      return 0.0275; // Alíquota para faixa de faturamento até R$ 180.000
-    } else if (faixaFaturamento <= 360000) {
-      return 0.0305; // Alíquota para faixa de faturamento R$ 180.000 - R$ 360.000
-    } else if (faixaFaturamento <= 720000) {
-      return 0.0340; // Alíquota para faixa de faturamento R$ 360.000 - R$ 720.000
-    } else if (faixaFaturamento <= 1800000) {
-      return 0.0420; // Alíquota para faixa de faturamento R$ 720.000 - R$ 1.800.000
-    } else if (faixaFaturamento <= 3600000) {
-      return 0.0525; // Alíquota para faixa de faturamento R$ 1.800.000 - R$ 3.600.000
-    } else if (faixaFaturamento <= 4800000) {
-      return 0.06; // Alíquota para faixa de faturamento R$ 3.600.000 - R$ 4.800.000
-    } else if (faixaFaturamento <= 6000000) {
-      return 0.0675; // Alíquota para faixa de faturamento R$ 4.800.000 - R$ 6.000.000
-    } else if (faixaFaturamento <= 7200000) {
-      return 0.0725; // Alíquota para faixa de faturamento R$ 6.000.000 - R$ 7.200.000
-    } else if (faixaFaturamento <= 8400000) {
-      return 0.08; // Alíquota para faixa de faturamento R$ 7.200.000 - R$ 8.400.000
-    } else if (faixaFaturamento <= 9600000) {
-      return 0.0875; // Alíquota para faixa de faturamento R$ 8.400.000 - R$ 9.600.000
-    } else if (faixaFaturamento <= 10800000) {
-      return 0.095; // Alíquota para faixa de faturamento R$ 9.600.000 - R$ 10.800.000
-    } else if (faixaFaturamento <= 12000000) {
-      return 0.10; // Alíquota para faixa de faturamento R$ 10.800.000 - R$ 12.000.000
-    } else if (faixaFaturamento <= 24000000) {
-      return 0.1125; // Alíquota para faixa de faturamento R$ 12.000.000 - R$ 24.000.000
-    } else {
-      return 0.14; // Alíquota para faixa de faturamento acima de R$ 24.000.000
-    }
+  switch (tipoEmpresa) {
+    case 'microempresa':
+      switch (true) {
+        case (faixaFaturamento <= 180000):
+          return 0.0275; // Alíquota para faixa de faturamento até R$ 180.000
+        case (faixaFaturamento <= 360000):
+          return 0.0305; // Alíquota para faixa de faturamento R$ 180.000 - R$ 360.000
+        case (faixaFaturamento <= 720000):
+          return 0.0340; // Alíquota para faixa de faturamento R$ 360.000 - R$ 720.000
+        case (faixaFaturamento <= 1800000):
+          return 0.0420; // Alíquota para faixa de faturamento R$ 720.000 - R$ 1.800.000
+        case (faixaFaturamento <= 3600000):
+          return 0.0525; // Alíquota para faixa de faturamento R$ 1.800.000 - R$ 3.600.000
+        case (faixaFaturamento <= 4800000):
+          return 0.06; // Alíquota para faixa de faturamento R$ 3.600.000 - R$ 4.800.000
+        case (faixaFaturamento <= 6000000):
+          return 0.0675; // Alíquota para faixa de faturamento R$ 4.800.000 - R$ 6.000.000
+        case (faixaFaturamento <= 7200000):
+          return 0.0725; // Alíquota para faixa de faturamento R$ 6.000.000 - R$ 7.200.000
+        case (faixaFaturamento <= 8400000):
+          return 0.08; // Alíquota para faixa de faturamento R$ 7.200.000 - R$ 8.400.000
+        case (faixaFaturamento <= 9600000):
+          return 0.0875; // Alíquota para faixa de faturamento R$ 8.400.000 - R$ 9.600.000
+        case (faixaFaturamento <= 10800000):
+          return 0.095; // Alíquota para faixa de faturamento R$ 9.600.000 - R$ 10.800.000
+        case (faixaFaturamento <= 12000000):
+          return 0.10; // Alíquota para faixa de faturamento R$ 10.800.000 - R$ 12.000.000
+        case (faixaFaturamento <= 24000000):
+          return 0.1125; // Alíquota para faixa de faturamento R$ 12.000.000 - R$ 24.000.000
+        default:
+          return 0.14; // Alíquota para faixa de faturamento acima de R$ 24.000.000
+      }
+    default:
+      return 0.09; // Alíquota padrão para CSLL (empresas em geral)
   }
-
-  return 0.09; // Alíquota padrão para CSLL (empresas em geral)
 }
 
 function isValidValor(valor){
   if(isNaN(valor)){
     return alert("Valor do Serviço deve ser númerico");
-  }
-}
-
-function isValidEmpresa(empresa){
-  switch (empresa){
-    case "microempresa": {
-      return calcularAliquotaCSLL(empresa, faturamento);
-    }
-    case "empresa-geral": {
-      return calcularAliquotaCSLL(empresa, faturamento);
-    }
-    default:{
-      return alert("Tipo de Empresa Inválido")
-    }
   }
 }
 

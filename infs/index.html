@@ -11,34 +11,20 @@
       
         <div class="mb-6">
           <label for="valor-servico" class="text-gray-700">Valor do Serviço:</label>
-          <input type="text" id="valor-servico" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+          <input type="text" id="valor-servico" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
         </div>
       
         <div class="mb-6">
           <label for="tipo-empresa" class="text-gray-700">Tipo de Empresa:</label>
-          <select id="tipo-empresa" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+          <select id="tipo-empresa" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
             <option value="microempresa">Microempresa (Simples Nacional)</option>
             <option value="empresa-geral">Empresa (Geral)</option>
           </select>
         </div>
       
-        <div class="flex items-center mb-6">
-          <input type="checkbox" id="atividade-especial" class="mr-2">
-          <label for="atividade-especial" class="text-gray-700">Atividade Especial</label>
-        </div>
-      
-        <div class="mb-6">
-          <label for="tipo-atividade" class="text-gray-700">Tipo de Atividade:</label>
-          <select id="tipo-atividade" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
-            <option value="default">Selecione</option>
-            <option value="limpeza-conservacao">Limpeza e Conservação</option>
-            <option value="seguranca">Segurança</option>
-          </select>
-        </div>
-      
         <div class="mb-6">
           <label for="faixa-faturamento" class="text-gray-700">Faixa de Faturamento (Microempresa):</label>
-          <select id="faixa-faturamento" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+          <select id="faixa-faturamento" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
             <option value="0">Até R$ 180.000</option>
             <option value="180000">R$ 180.000 - R$ 360.000</option>
             <option value="360000">R$ 360.000 - R$ 720.000</option>
@@ -53,6 +39,22 @@
             <option value="10800000">R$ 10.800.000 - R$ 12.000.000</option>
             <option value="12000000">R$ 12.000.000 - R$ 24.000.000</option>
             <option value="24000000">Acima de R$ 24.000.000</option>
+          </select>
+        </div>
+        
+        <div class="mb-6">
+          <label for="regime-pis" class="text-gray-700">Regime PIS:</label>
+          <select id="regime-pis" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+            <option value="cumulativo">Cumulativo</option>
+            <option value="nao-cumulativo">Não Cumulativo</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="regime-cofins" class="text-gray-700">Regime COFINS:</label>
+          <select id="regime-cofins" required class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+            <option value="cumulativo">Cumulativo</option>
+            <option value="nao-cumulativo">Não Cumulativo</option>
           </select>
         </div>
       
@@ -76,18 +78,18 @@
     <script src="./main.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-      var valorServico = document.getElementById('valor-servico');
-      var inputMaskOptions = {
-        prefix: 'R$ ',
-        groupSeparator: '.',
-        radixPoint: ',',
-        allowNegative: false,
-        autoGroup: true,
-        digits: 2,
-        digitsOptional: false,
-        rightAlign: false,
-        unmaskAsNumber: true
-      };
+        var valorServico = document.getElementById('valor-servico');
+        var inputMaskOptions = {
+          prefix: 'R$ ',
+          groupSeparator: '.',
+          radixPoint: ',',
+          allowNegative: false,
+          autoGroup: true,
+          digits: 2,
+          digitsOptional: false,
+          rightAlign: false,
+          unmaskAsNumber: true
+        };
         new Inputmask('currency', inputMaskOptions).mask(valorServico);
       });
     </script>
