@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" href="../mkp/mkp.png" type="image/x-icon">
+        <title>Cálculo de MarkUp</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+        <link type="text/css" rel="stylesheet" href="/css/reset.css">
+        <link type="text/css" rel="stylesheet" href="/css/style.css">
+
+
+    </head>
+
+    <body>
+        
+        <header>
+            <img src="../mkp/mkp.png" alt="Ícone da Plataforma">
+            <h1>Cálculo de MarkUp</h1>
+        </header>
+
+        <main>
+
+            <div class="leftSide">
+
+                <p>Por favor, preencha os campos abaixo para efetuar o cálculo!</p>
+
+                <label for="fixed_expenses">Despesas Fixas</label>
+                <input type="number" id="fixed_expenses">
+
+                <label for="variable_expenses">Despesas Variáveis</label>
+                <input type="number" id="variable_expenses">
+                
+                <label for="profit">Lucro Desejado</label>
+                <input type="number" id="profit">
+
+            </div>
+
+            <div class="rightSide">
+
+                <div class="results">
+                    <p class="result_text">O MarkUp é de:</p>
+                    <p class="result" id="result">0</p>
+                </div>
+                
+
+                <div class="action">
+                    <button class="clear" id="clear">limpar</button>
+                    <button class="calculate" id="caculate">calcular</button>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer>
+
+            <h3>Feito por :</h3>
+            <ul class="members">
+                <li>Beatriz Meloni</li>
+                <li>Bruno Lemes</li>
+                <li>Guilherme Azevedo</li>
+                <li>João Zanholo</li>
+            </ul>
+
+            <p>&copy; Todos os direitos reservados. </p>
+
+        </footer>
+
+        <script type="text/javascript" src="../mkp/mkp.js"></script>
+        <script type="text/javascript" src="../mkp/main.js"></script>
+    </body>
+
+</html>
