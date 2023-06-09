@@ -7,6 +7,7 @@ if (typeof document !== 'undefined') {
     const resultElement = document.getElementById('result');
     const calculateButton = document.querySelector('.calculate');
     const clearButton = document.querySelector('.clear');
+    const icone1 = document.getElementById('icone1');
   
     function calculate() {
       const fixedExpenses = parseFloat(fixedExpensesInput.value);
@@ -15,9 +16,16 @@ if (typeof document !== 'undefined') {
   
       if (!isNaN(fixedExpenses) && !isNaN(variableExpenses) && !isNaN(profit)) {
         const markup = calculateMarkup(fixedExpenses, variableExpenses, profit);
-        update(markup);
+        if(markup == -1){
+          clearMarkup()
+          const mensagem = new Comunicado('ERRO -', 'O MarkUp desejado não é possível de ser alcançado');
+          alert(mensagem.get());
+        }else{
+          update(markup);
+        }
+        
       } else {
-        const mensagem = new Comunicado('ERRO', 'Preencha todos os dados');
+        const mensagem = new Comunicado('ERRO -', 'Preencha todos os dados');
         alert(mensagem.get());
       }
     }
@@ -35,11 +43,17 @@ if (typeof document !== 'undefined') {
       this.descricao = descricao;
   
       this.get = function () {
-        return this.mensagem + ' - ' + this.descricao;
+        return this.mensagem + '  ' + this.descricao;
       };
+    }
+
+    function info(){
+      const mensagem = new Comunicado('O nosso MarkUp é cáculado como ',': 1 / (1 - (Despesas Fixas / 100) - (Despesas Variáveis / 100) - (Lucro Desejado / 100))')
+      alert(mensagem.get())
     }
   
     calculateButton.addEventListener('click', calculate);
     clearButton.addEventListener('click', clearMarkup);
+    icone1.addEventListener('click',info)
   }
   
