@@ -6,8 +6,8 @@ const INDEX = '/index.html';
 const endpoints = {
     etec: '/etec/etec.html',
     etec2: '/etec2/etec2.html',
-    infs: '/infs/infs.html',
-    infs2: '/infs2/infs2.html',
+    infs: '/infs/index.html',
+    infs2: '/infs2/teste.html',
     infp: '/infp/infp.html',
     infp2: '/infp2/infp2.html',
     mkp: '/mkp/mkp.html',
