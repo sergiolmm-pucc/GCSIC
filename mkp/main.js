@@ -32,6 +32,9 @@ if (typeof document !== 'undefined') {
   
     function clearMarkup() {
       resultElement.textContent = '0';
+      fixedExpensesInput.value = '';
+      variableExpensesInput.value = '';
+      profitInput.value = '';
     }
   
     function update(markup) {
@@ -48,7 +51,7 @@ if (typeof document !== 'undefined') {
     }
 
     function info(){
-      const mensagem = new Comunicado('O nosso MarkUp é calculado como ',': 1 / (1 - (Despesas Fixas / 100) - (Despesas Variáveis / 100) - (Lucro Desejado / 100))')
+      const mensagem = new Comunicado('O nosso MarkUp é calculado como ',': 1 / 1 - ((Despesas Fixas / 100) + (Despesas Variáveis / 100) + (Lucro Desejado / 100))')
       alert(mensagem.get())
     }
   
