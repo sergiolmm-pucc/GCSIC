@@ -88,7 +88,10 @@ const screen = {
         	console.log("erro no botao");
     	}
 
-      await driver.wait(until.alertIsPresent());
+      await driver.wait(async () => {
+        const pageSource = await driver.getPageSource();
+        return pageSource.includes('ERRO - Preencha todos os dados');
+      });
 
         driver.takeScreenshot().then(
             function(image, err) {

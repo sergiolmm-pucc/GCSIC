@@ -87,7 +87,10 @@ const screen = {
     }
     
 
-    await driver.wait(until.alertIsPresent());
+    await driver.wait(async () => {
+        const pageSource = await driver.getPageSource();
+        return pageSource.includes('ERRO - Preencha todos os dados');
+      });
     
     driver.takeScreenshot().then(
         function(image, err) {
@@ -101,7 +104,7 @@ const screen = {
     
     let alert = await driver.switchTo().alert();
       
-    await alert.accept();
+        
 
     await driver.sleep(5000);
        
