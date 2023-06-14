@@ -87,7 +87,7 @@ const screen = {
     }
     
 
-    await driver.sleep(5000);
+    await driver.wait(until.alertIsPresent());
     
     driver.takeScreenshot().then(
         function(image, err) {
@@ -98,7 +98,7 @@ const screen = {
     );
     console.log("fim info")
 
-    await driver.wait(until.alertIsPresent());
+    
     let alert = await driver.switchTo().alert();
       
     await alert.accept();
