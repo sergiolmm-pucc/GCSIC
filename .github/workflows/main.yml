@@ -86,8 +86,8 @@ jobs:
       - name: fotos da tela
         uses: actions/upload-artifact@v3
         with:
-          name: release-macos
-          # Path to the release files          
+          name: Fotos dos testes
+          # Path to the release files          Gravar as fotos na raiz do projeto no docker
           path: /home/runner/work/GCSIC/GCSIC/*.png
 # 
 #
