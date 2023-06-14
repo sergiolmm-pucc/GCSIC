@@ -73,7 +73,7 @@ const screen = {
 
     driver.takeScreenshot().then(
         function(image, err) {
-        require('fs').writeFile('info', image, 'base64', function(err) {
+        require('fs').writeFile('info1_mkp.png', image, 'base64', function(err) {
             console.log("erro"+ err);
         });
         }
@@ -86,24 +86,24 @@ const screen = {
         console.log("erro no botao");
     }
         
-    driver.takeScreenshot().then(
-        function(image, err) {
-        require('fs').writeFile('info', image, 'base64', function(err) {
-            console.log("erro"+ err);
-        });
-        }
-    );
-    console.log("começo info")
-
     const alertText = await driver.executeScript('return window.alert.message');
 
-    // Imprimir a mensagem do alerta
+  
     console.log('Mensagem do alerta:', alertText);
   
-    // Tirar uma screenshot da página após a exibição do alerta
+   
     await driver.takeScreenshot().then(image => {
-      require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
+      require('fs').writeFileSync('info2_mkp.png', image, 'base64');
     });
+  
+    console.log("fim info")
+    
+    let alert = await driver.switchTo().alert();
+  
+    // Aceitar o alerta
+    await alert.accept();
+  
+    await driver.sleep(5000);
        
       } finally {
         console.log('Finalizado');
