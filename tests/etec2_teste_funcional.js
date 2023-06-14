@@ -9,9 +9,14 @@ const chrome = require('selenium-webdriver/chrome');
   const options = new chrome.Options();
   options.addArguments('--no-sandbox');
 
+  const screen = {
+    width: 1024,
+    height: 1024
+  };
+
   let driver = await new Builder()
     .forBrowser('chrome')
-    .setChromeOptions(chrome)
+    .setChromeOptions(new chrome.Options().headless().windowSize(screen))
     .build();
 
   try {
