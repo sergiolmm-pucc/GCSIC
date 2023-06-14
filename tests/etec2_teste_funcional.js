@@ -30,7 +30,8 @@ const fs = require('fs');
     driver.takeScreenshot().then(
       function(image, err) {
         require('fs').writeFile('etec2inicio.png', image, 'base64', function(err) {
-          console.log("erro"+ err);
+          console.log("erro: "+ err);
+          console.log("ScreenshotInicioSalva")
         });
       }
      );
@@ -58,7 +59,8 @@ const fs = require('fs');
     driver.takeScreenshot().then(
       function(image, err) {
         require('fs').writeFile('etec2fim.png', image, 'base64', function(err) {
-          console.log("erro"+ err);
+          console.log("erro: "+ err);
+          console.log("ScreenshotFinalSalva")
         });
       }
      );
