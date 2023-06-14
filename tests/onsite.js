@@ -36,7 +36,7 @@ const screen = {
         console.log("BUILD 3");
         //it('Assert page title', async() => {
             var startTimestamp = Date.now()
-            var endTimestamp = startTimestamp + 20 * 1000; // 20 segundos
+            var endTimestamp = startTimestamp + 300 * 1000; // 5 minutos
             var tentativa = 0;
             while(true)
             {
@@ -44,8 +44,8 @@ const screen = {
                 console.log("While ");
                 try
                 {
-                    await driver.get('https://billowy-flowery-cousin.glitch.me/ht'); //process.env['webAppUrl']
-                    await driver.wait(until.titleIs('On Site Teste'), 2000);
+                    await driver.get('https://lumpy-polite-rainstorm.glitch.me/ETEC'); //process.env['webAppUrl']
+                    await driver.wait(until.titleIs('Calculadora ETEC'), 2000);
                     console.log("apos wait 2000");
                     break;
                 }
@@ -59,7 +59,7 @@ const screen = {
                         console.log("##vso[task.logissue type=error;]Failed with error " + err)
                         throw new Error('Failed with error ' + err);
                     }
-                    if (tentativa > 5){
+                    if (tentativa > 100){
                         throw new Error('Title was not rendered properly.');
                     }
                     await new Promise(resolve=>{
@@ -68,6 +68,35 @@ const screen = {
                 }
             }
             console.log("Fora While");
+    	   
+    	   driver.takeScreenshot().then(
+            function(image, err) {
+              require('fs').writeFile('inicio14.png', image, 'base64', function(err) {
+                console.log("erro"+ err);
+              });
+            }
+           );
+
+ 	//name locator for google search button
+    	try{    
+    		let searchIcon = driver.findElement(By.id("calculate"));
+    			searchIcon.click();
+    		}catch(error){
+        	console.log("erro no botao");
+    	}
+        
+   // Wait for 5 secs to let the dynamic content to load
+   await driver.sleep(5000);
+
+      	   driver.takeScreenshot().then(
+            function(image, err) {
+              require('fs').writeFile('fim14.png', image, 'base64', function(err) {
+                console.log("erro"+ err);
+              });
+            }
+           );
+
+	    
         //});    
        
       } finally {

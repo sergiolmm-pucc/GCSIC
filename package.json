@@ -9,7 +9,9 @@
     "test1": "node tests/button-render.js",
     "e2e-test": "start-server-and-test http://localhost:3000/ht test1",
     "on-site": "node tests/onsite.js",
-    "on-site2": "node tests/test_title.js"
+    "on-site2": "node tests/test_title.js",
+    "etec-button": "node tests/etec_button-render.js",
+    "etec-print": "node tests/etec_print.js"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-mvp-node"

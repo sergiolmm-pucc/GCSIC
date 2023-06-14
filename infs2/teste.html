@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Calculadora de Imposto</title>
+  <meta charset="utf-8" />
   <style>
     .container {
   max-width: 400px;
@@ -77,7 +78,7 @@ button:hover {
 </head>
 <body>
   <div class="container">
-    <h1>Calculadora de Impostos</h1>
+    <h1>Calculadora de Imposto</h1>
 
     <form id="calculadoraForm">
       <div class="input-container">
@@ -104,11 +105,13 @@ button:hover {
 
     <div id="resultado"></div>
   </div>
-  
-  <script src="../script.js"></script>
+  <script src="./script.js"> </script>
+ 
   <script>
-    document.getElementById("calculadoraForm").addEventListener("submit", (event) => {
-      event.preventDefault();
+    module.exports = { calcularImpostoSaoPaulo, calcularImpostoCampinas, calcularImpostos };
+    
+     document.getElementById("calculadoraForm").addEventListener("submit", (event) => {
+        event.preventDefault();
     
       const empresa = document.getElementById("empresa").value;
       const valor = parseFloat(document.getElementById("preco").value);

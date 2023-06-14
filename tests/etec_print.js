@@ -1,60 +1,54 @@
+const { Builder, By } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const firefox = require('selenium-webdriver/firefox');
-const webdriver = require('selenium-webdriver');
-const {Builder, Browser, By } = require('selenium-webdriver');
- 
-const screen = {
-  width: 1024,
-  height: 720
-};
- 
+const fs = require('fs');
+
 (async function buttonRender() {
-    console.log("BUILD 1");
+  console.log("BUILD 1");
 
-    var capabilities = webdriver.Capabilities.chrome();
-	capabilities.set('chromeOptions', {'args': ['--no-sandbox']});
+  const screen = {
+    width: 1024,
+    height: 720
+  };
 
-    let driver = await new Builder()
-      .forBrowser(Browser.CHROME)
-      .withCapabilities(capabilities)
-      .setChromeOptions(new chrome.Options().headless().windowSize(screen))
-      .build();
-    console.log("BUILD 2");
+  let driver = await new Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(new chrome.Options().headless().windowSize(screen))
+    .build();
+
+  console.log("BUILD 2");
+
   try {
-    await driver.get('http://localhost:3000/ht');
-    
-    let btn = await driver.findElement(By.id('sendbutton'));   
-    let didSendButtonRender = btn.isDisplayed()
-    if (!didSendButtonRender){
+    await driver.get('http://localhost:3000/etec');
+
+    let btn = await driver.findElement(By.id('calculate'));
+    let didSendButtonRender = await btn.isDisplayed();
+    if (!didSendButtonRender) {
       throw new Error(`Send button was not rendered properly.`);
     }
     console.log("BUILD 3");
-    
-    var IMG;
-    var windowHandle = user32.FindWindowA(null, "Calculator");
-    var printWin = user32.PrintWindow(windowHandle, IMG, 0);
 
-    console.log(printWin);
-    console.log(IMG);
+    // Capture a screenshot
+    const screenshotData1 = await driver.takeScreenshot();
 
-    let text = await driver.findElement(By.id('calculate')).getText().then((text) =>{ return "ok - " + text});   
-    console.log(text);
+    fs.writeFileSync('./etec/imagens/etec-inicio.png', screenshotData1, 'base64');
+    console.log('Screenshot 1 saved.');
+
+    let text = await driver.findElement(By.id('calculate')).getText();
+    console.log("ok - " + text);
 
     console.log("antes do click");
-    let text1a = await driver.findElement(By.id('calculate')).getText().then((text) =>{ return "ok - " + text});   
-    console.log(text1a);
-    var printWin = user32.PrintWindow(windowHandle, IMG, 0);
-
-    console.log(printWin);
-    console.log(IMG);
+    let text1a = await driver.findElement(By.id('calculate')).getText();
+    console.log("ok - " + text1a);
+    let l=driver.findElement(By.id("salarioBruto"));
+    l.sendKeys(4000);
 
     await driver.findElement(By.id('calculate')).click();
-    let text1 = await driver.findElement(By.id('demo')).getText().then((text) =>{ return "ok - " + text});   
-    console.log(text1);
-    var printWin = user32.PrintWindow(windowHandle, IMG, 0);
 
-    console.log(printWin);
-    console.log(IMG);
+    // Capture another screenshot after clicking the button
+    const screenshotData2 = await driver.takeScreenshot();
+
+    fs.writeFileSync('./etec/imagens/etec-fim.png', screenshotData2, 'base64');
+    console.log('Screenshot 2 saved.');
 
   } finally {
     await driver.quit();
