@@ -68,37 +68,35 @@ const screen = {
                 }
             }
             console.log("Fora While");
-            //
-            console.log("começando screenshot calcular sem dados")
+            //    
+    console.log("começo info")
 
-    	   driver.takeScreenshot().then(
-            function(image, err) {
-              require('fs').writeFile('calcular_sem_dados1_mkp.png', image, 'base64', function(err) {
-                console.log("erro"+ err);
-              });
-            }
-           );
+    driver.takeScreenshot().then(
+        function(image, err) {
+        require('fs').writeFile('info', image, 'base64', function(err) {
+            console.log("erro"+ err);
+        });
+        }
+    );
+    await driver.sleep(5000);
+    try{    
+        let searchIcon = driver.findElement(By.id("icone1"));
+            searchIcon.click();
+        }catch(error){
+        console.log("erro no botao");
+    }
+    
 
-        
-        await driver.sleep(5000);
-    	try{    
-    		let searchIcon = driver.findElement(By.id("caculate"));
-    			searchIcon.click();
-    		}catch(error){
-        	console.log("erro no botao");
-    	}
-
-        await driver.sleep(5000);
-
-        driver.takeScreenshot().then(
-            function(image, err) {
-              require('fs').writeFile('calcular_sem_dados2_mkp.png', image, 'base64', function(err) {
-                console.log("erro"+ err);
-              });
-            }
-           );
-
-        console.log("fim screenshot calcular sem dados")
+    await driver.sleep(5000);
+    
+    driver.takeScreenshot().then(
+        function(image, err) {
+        require('fs').writeFile('info', image, 'base64', function(err) {
+            console.log("erro"+ err);
+        });
+        }
+    );
+    console.log("fim info")
        
       } finally {
         console.log('Finalizado');

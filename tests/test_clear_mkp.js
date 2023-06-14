@@ -69,36 +69,59 @@ const screen = {
             }
             console.log("Fora While");
             //
-            console.log("começando screenshot calcular sem dados")
+ 
 
-    	   driver.takeScreenshot().then(
-            function(image, err) {
-              require('fs').writeFile('calcular_sem_dados1_mkp.png', image, 'base64', function(err) {
+    console.log("começo limpar")
+    try{
+        let fieldFE = driver.findElement(By.id("fixed_expanses"))
+        fieldFE.sendKeys(10)
+        let fieldVE = driver.findElement(By.id("fixed_expanses"))
+        fieldVE.sendKeys(20)
+        let fieldPF = driver.findElement(By.id("fixed_expanses"))
+        fieldPF.sendKeys(30)
+    }catch(error){
+        console.log("erro preenchendo campo");
+    }
+
+    await driver.sleep(5000);
+    try{    
+        let searchIcon = driver.findElement(By.id("calculate"));
+            searchIcon.click();
+        }catch(error){
+        console.log("erro no botao");
+    }
+    
+    await driver.sleep(5000);
+
+    driver.takeScreenshot().then(
+        function(image, err) {
+            require('fs').writeFile('limpar_dados1_mkp.png', image, 'base64', function(err) {
                 console.log("erro"+ err);
-              });
-            }
-           );
+            });
+        }
+        );
+ 
+    await driver.sleep(5000);
+    
+    try{    
+        let searchIcon = driver.findElement(By.id("clear"));
+            searchIcon.click();
+        }catch(error){
+        console.log("erro no botao");
+    }
+    
 
-        
-        await driver.sleep(5000);
-    	try{    
-    		let searchIcon = driver.findElement(By.id("caculate"));
-    			searchIcon.click();
-    		}catch(error){
-        	console.log("erro no botao");
-    	}
-
-        await driver.sleep(5000);
-
-        driver.takeScreenshot().then(
-            function(image, err) {
-              require('fs').writeFile('calcular_sem_dados2_mkp.png', image, 'base64', function(err) {
-                console.log("erro"+ err);
-              });
-            }
-           );
-
-        console.log("fim screenshot calcular sem dados")
+    await driver.sleep(5000);
+    
+    driver.takeScreenshot().then(
+        function(image, err) {
+        require('fs').writeFile('limpar_dados2.png', image, 'base64', function(err) {
+            console.log("erro"+ err);
+        });
+        }
+    );
+    console.log("fim limpar")
+    
        
       } finally {
         console.log('Finalizado');

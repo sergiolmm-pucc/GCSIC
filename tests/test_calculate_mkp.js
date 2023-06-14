@@ -68,38 +68,54 @@ const screen = {
                 }
             }
             console.log("Fora While");
-            //
-            console.log("começando screenshot calcular sem dados")
+  
+        //
+        console.log("começando screenshot calcular com dados")
+    
+        try{
+            let fieldFE = driver.findElement(By.id("fixed_expanses"))
+            fieldFE.sendKeys(10)
+            let fieldVE = driver.findElement(By.id("fixed_expanses"))
+            fieldVE.sendKeys(20)
+            let fieldPF = driver.findElement(By.id("fixed_expanses"))
+            fieldPF.sendKeys(30)
+        }catch(error){
+            console.log("erro preenchendo campo");
+        }
 
-    	   driver.takeScreenshot().then(
-            function(image, err) {
-              require('fs').writeFile('calcular_sem_dados1_mkp.png', image, 'base64', function(err) {
-                console.log("erro"+ err);
-              });
-            }
-           );
-
-        
         await driver.sleep(5000);
+        
+        driver.takeScreenshot().then(
+            function(image, err) {
+                require('fs').writeFile('calcular_com_dados1_mkp.png', image, 'base64', function(err) {
+                    console.log("erro"+ err);
+                });
+            }
+            );
+ 	
     	try{    
-    		let searchIcon = driver.findElement(By.id("caculate"));
+    		let searchIcon = driver.findElement(By.id("calculate"));
     			searchIcon.click();
     		}catch(error){
         	console.log("erro no botao");
     	}
+        
+ 
+   // Wait for 5 secs to let the dynamic content to load
+    await driver.sleep(5000);
+   
+    driver.takeScreenshot().then(
+        function(image, err) {
+        require('fs').writeFile('calcular_com_dados2_mkp.png', image, 'base64', function(err) {
+            console.log("erro"+ err);
+        });
+        }
+    );
 
-        await driver.sleep(5000);
+    console.log("fim screenshot calcular com dados")
 
-        driver.takeScreenshot().then(
-            function(image, err) {
-              require('fs').writeFile('calcular_sem_dados2_mkp.png', image, 'base64', function(err) {
-                console.log("erro"+ err);
-              });
-            }
-           );
 
-        console.log("fim screenshot calcular sem dados")
-       
+
       } finally {
         console.log('Finalizado');
         await driver.quit();
