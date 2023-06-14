@@ -89,29 +89,29 @@ const screen = {
     	}
 
 
-
-            // Wait for the alert to be displayed
-
-        const alertText = await driver.executeScript('return window.alert.message');
-
+      try {
+        // Capturar a mensagem do alerta
+        const alertText = await driver.switchTo().alert().getText();
+      
         // Imprimir a mensagem do alerta
         console.log('Mensagem do alerta:', alertText);
-
-        await driver.wait(until.alertIsPresent(), 5000);
-        
+      
+        // Tirar uma screenshot da página após a exibição do alerta
         await driver.takeScreenshot().then(image => {
           require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
         });
-
-        // Wait for the alert to be displayed
-        let alert = await driver.switchTo().alert();
-
+      
         // Aceitar o alerta
-        await alert.accept();
-
-        await driver.wait(until.titleIs('Cálculo de MarkUp'), 5000);
-
-        await driver.sleep(5000);
+        await driver.switchTo().alert().accept();
+      } catch (error) {
+        console.log('Erro ao lidar com o alerta:', error);
+      }
+      
+      // Aguardar a página ser carregada completamente após lidar com o alerta
+      await driver.wait(until.titleIs('Cálculo de MarkUp'), 5000);
+      
+      // Aguardar mais tempo, se necessário, para garantir que a página esteja totalmente carregada
+      await driver.sleep(5000);
        
       } finally {
         console.log('Finalizado');
