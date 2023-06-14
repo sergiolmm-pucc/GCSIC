@@ -85,23 +85,25 @@ const screen = {
         }catch(error){
         console.log("erro no botao");
     }
-        
-    const alertText = await driver.executeScript('return window.alert.message');
-
-  
-    console.log('Mensagem do alerta:', alertText);
-  
    
-    await driver.takeScreenshot().then(image => {
-      require('fs').writeFileSync('info2_mkp.png', image, 'base64');
-    });
-  
-    console.log("fim info")
-    
-    let alert = await driver.switchTo().alert();
-  
-    // Aceitar o alerta
-    await alert.accept();
+        // Wait for the alert to be displayed
+        await driver.wait(until.alertIsPresent(), 5000);
+
+        // Capturar a mensagem do alerta
+        const alert = await driver.switchTo().alert();
+        const alertText = await alert.getText();
+
+        // Imprimir a mensagem do alerta
+        console.log('Mensagem do alerta:', alertText);
+
+        // Tirar uma screenshot da página após a exibição do alerta
+        await driver.takeScreenshot().then(image => {
+        require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
+        });
+
+        // Aceitar o alerta
+        await alert.accept();
+
   
     await driver.sleep(5000);
        
