@@ -44,8 +44,8 @@ const screen = {
                 console.log("While ");
                 try
                 {
-                    await driver.get('https://billowy-flowery-cousin.glitch.me/ht'); //process.env['webAppUrl']
-                    await driver.wait(until.titleIs('On Site Teste'), 2000);
+                    await driver.get('https://lumpy-polite-rainstorm.glitch.me/ETEC'); //process.env['webAppUrl']
+                    await driver.wait(until.titleIs('Calculadora ETEC'), 2000);
                     console.log("apos wait 2000");
                     break;
                 }
