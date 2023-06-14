@@ -59,7 +59,7 @@ const screen = {
                         console.log("##vso[task.logissue type=error;]Failed with error " + err)
                         throw new Error('Failed with error ' + err);
                     }
-                    if (tentativa > 5){
+                    if (tentativa > 10){
                         throw new Error('Title was not rendered properly.');
                     }
                     await new Promise(resolve=>{
@@ -68,6 +68,15 @@ const screen = {
                 }
             }
             console.log("Fora While");
+    	   
+    	   driver.takeScreenshot().then(
+            function(image, err) {
+              require('fs').writeFile('inicio14.png', image, 'base64', function(err) {
+                console.log("erro"+ err);
+              });
+            }
+           );
+	    
         //});    
        
       } finally {
