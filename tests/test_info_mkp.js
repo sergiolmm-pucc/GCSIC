@@ -1,4 +1,5 @@
 const process = require('process');
+const html2canvas = require('html2canvas');
 const webdriver = require('selenium-webdriver');
 const {until} = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
@@ -79,6 +80,9 @@ const screen = {
         }
     );
     await driver.sleep(5000);
+
+    const canvas = await html2canvas.default(driver.findElement(By.tagName('body')));
+    
     try{    
         let searchIcon = driver.findElement(By.id("icone1"));
             searchIcon.click();
@@ -86,6 +90,34 @@ const screen = {
         console.log("erro no botao");
     }
    
+    await driver.wait(until.alertIsPresent(), 5000);
+
+    // Obtém a posição e tamanho do alerta
+    const alertElement = await driver.switchTo().alert();
+    const alertRect = await alertElement.getRect();
+
+        // Calcula as coordenadas do alerta na captura de tela
+    const x = alertRect.x - canvas.scrollLeft;
+    const y = alertRect.y - canvas.scrollTop;
+    const width = alertRect.width;
+    const height = alertRect.height;
+
+    // Cria um elemento de canvas temporário para recortar a área do alerta
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+    const tempContext = tempCanvas.getContext('2d');
+    tempContext.drawImage(canvas, x, y, width, height, 0, 0, width, height);
+        const imageData = tempCanvas.toDataURL('image/png');
+    require('fs').writeFile('alert_screenshot.png', imageData.replace(/^data:image\/png;base64,/, ''), 'base64', function(err) {
+        if (err) {
+            console.log('Erro ao salvar a captura de tela do alerta: ' + err);
+        } else {
+            console.log('Captura de tela do alerta salva com sucesso!');
+        }
+    });
+        await driver.sleep(5000)
+        await alert.accept()
        // Tirar uma screenshot da página após a exibição do alerta
        await driver.takeScreenshot().then(image => {
         require('fs').writeFileSync('info2_mkp.png', image, 'base64');
