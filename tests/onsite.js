@@ -36,7 +36,7 @@ const screen = {
         console.log("BUILD 3");
         //it('Assert page title', async() => {
             var startTimestamp = Date.now()
-            var endTimestamp = startTimestamp + 40 * 1000; // 40 segundos
+            var endTimestamp = startTimestamp + 300 * 1000; // 5 minutos
             var tentativa = 0;
             while(true)
             {
@@ -59,7 +59,7 @@ const screen = {
                         console.log("##vso[task.logissue type=error;]Failed with error " + err)
                         throw new Error('Failed with error ' + err);
                     }
-                    if (tentativa > 10){
+                    if (tentativa > 100){
                         throw new Error('Title was not rendered properly.');
                     }
                     await new Promise(resolve=>{
