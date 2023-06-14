@@ -90,8 +90,14 @@ const screen = {
 
 
       try {
+        // Aguardar a presença do alerta
+        await driver.wait(until.alertIsPresent(), 5000);
+      
+        // Capturar o alerta
+        const alert = await driver.switchTo().alert();
+      
         // Capturar a mensagem do alerta
-        const alertText = await driver.switchTo().alert().getText();
+        const alertText = await alert.getText();
       
         // Imprimir a mensagem do alerta
         console.log('Mensagem do alerta:', alertText);
@@ -102,7 +108,7 @@ const screen = {
         });
       
         // Aceitar o alerta
-        await driver.switchTo().alert().accept();
+        await alert.accept();
       } catch (error) {
         console.log('Erro ao lidar com o alerta:', error);
       }
