@@ -10,6 +10,7 @@
     "e2e-test": "start-server-and-test http://localhost:3000/ht test1",
     "on-site": "node tests/onsite.js",
     "on-site2": "node tests/test_title.js",
+    "mkp-test": "node tests/test_mkp.js",
     "etec-button": "node tests/etec_button-render.js",
     "etec-print": "node tests/etec_print.js",
     "etec-title": "node tests/etec_test_title.js"
