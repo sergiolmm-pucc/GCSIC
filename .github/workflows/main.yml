@@ -56,7 +56,7 @@ jobs:
 
 
   tests:
-    needs: Segundo_exemplo
+#    needs: Segundo_exemplo
     runs-on: ubuntu-latest
     name: Run Selenium Tests
     steps:
