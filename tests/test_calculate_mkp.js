@@ -73,7 +73,7 @@ const screen = {
         console.log("começando screenshot calcular com dados")
     
         try{
-            let fieldFE = driver.findElement(By.id("fixed_expanses"))
+            let fieldFE = driver.findElement(By.id("fixed_expenses"));
             fieldFE.sendKeys(10)
             let fieldVE = driver.findElement(By.id("variable_expenses"))
             fieldVE.sendKeys(20)
