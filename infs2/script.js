@@ -27,7 +27,7 @@ function calcularImpostos(empresa, valor, cidade) {
   return { empresa, imposto, taxa, total };
 }
 
-document.getElementById("calcularBtn").addEventListener("click", (event) => {
+document.getElementById("calculadoraForm").addEventListener("submit", (event) => {
   event.preventDefault();
 
   const empresa = document.getElementById("empresa").value;
@@ -42,8 +42,9 @@ document.getElementById("calcularBtn").addEventListener("click", (event) => {
                                  <p>Total: R$ ${total.toFixed(2)}</p>`;
 });
 
+
 module.exports = {
   calcularImpostoSaoPaulo,
   calcularImpostoCampinas,
-  calcularImpostos
+  calcularImpostos,
 };
