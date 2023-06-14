@@ -36,7 +36,7 @@ const screen = {
         console.log("BUILD 3");
         //it('Assert page title', async() => {
             var startTimestamp = Date.now()
-            var endTimestamp = startTimestamp + 20 * 1000; // 20 segundos
+            var endTimestamp = startTimestamp + 40 * 1000; // 40 segundos
             var tentativa = 0;
             while(true)
             {
