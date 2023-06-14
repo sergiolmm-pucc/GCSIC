@@ -78,6 +78,8 @@ jobs:
         run: npm run on-site
       - name: Run etec-print teste
         run: npm run etec-print 
+      - name: Run etec2_teste_funcional
+        run: npm run etec2_teste_funcional
       - name: Run test_mkp
         run: npm run mkp-test
       - name: Run test_mkp_calculate
@@ -86,8 +88,6 @@ jobs:
         run: npm run mkp-clear
       - name: Run test_mkp_info
         run: npm run mkp-info
-      - name: Run etec2_teste_funcional
-        run: npm run etec2_teste_funcional
       # - name: Run onsite2
       #   run: npm run on-site2  # tirado em 14/06 pra ver se roda a action sem erros      
       - name: diretorio
