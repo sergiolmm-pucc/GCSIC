@@ -1,41 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+<head>
+  <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+  <style>
+    body {
+      margin: 0;
+    }
 
-    <!--
+    ul.topnav {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    ul.topnav li {
+      float: left;
+    }
+
+    ul.topnav li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    ul.topnav li a:hover:not(.active) {
+      background-color: #11111111;
+    }
+
+    ul.topnav li a.active {
+      background-color: #007DFA;
+    }
+
+    ul.topnav li.right {
+      float: right;
+    }
+
+    @media screen and (max-width: 600px) {
+
+      ul.topnav li.right,
+      ul.topnav li {
+        float: none;
+      }
+    }
+
+    .bgimg {
+      background: white;
+      margin-top: 20%;
+      height: 100%;
+      position: relative;
+      color: black;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+
+    .bgimg2 {
+      background: white;
+      height: 100%;
+      position: relative;
+      color: black;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+
+    .middle {
+      position: flex;
+      align-content: center;
+      text-align: center;
+    }
+
+    hr {
+      height: 1.5px;
+      margin: auto;
+      width: 60%;
+      background: black;
+    }
+
+    .button {
+      border: none;
+      color: #04AA6D;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .button1 {
+      background-color: #007DFA;
+      color: white;
+    }
+
+    .button1:hover {
+      background-color: #8AC5FF;
+    }
+
+    input[type=text],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type=button] {
+      width: 100%;
+      background-color: #007DFA;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    input[type=button]:hover {
+      background-color: #8AC5FF;
+    }
+
+    .inputContainer {
+      border-radius: 8px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #customers td,
+    #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+      background-color: #ddd;
+    }
+
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #007DFA;
+      color: white;
+    }
+  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+  <!--
       This is the page head - it contains info the browser uses
       Like the title, which appears on the browser tab but not inside the page
       Further down you'll see the content that displays in the page
     -->
-    <title>CALCULO ETEC</title>
+  <title>CALCULO ETEC</title>
 
-    <!-- The website stylesheet -->
-    <link rel="stylesheet" href="/etec2/style.css" />
+  <!-- The website stylesheet -->
+  <link rel="stylesheet" href="/style.css" />
 
-    <!-- The website JavaScript file -->
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <header>
-      <ul class="topnav">
-        <li><a class="active" href="/etec2/etec2.html">Home</a></li>
-        <li><a href="/etec2/etec2.html">Calculo ETEC</a></li>
-      </ul>
-    </header>
-    <div>
-      <div class="bgimg">
-        <div class="middle">
-          <h1>Encargos trabalhista Empregada domestica</h1>
-          <hr>
-          <a href="/etec2/page2.html" class="button button1">Calcular ETEC</a>
-        </div>
+  <!-- The website JavaScript file -->
+  <script src="/script.js" defer></script>
+</head>
+
+<body>
+  <div>
+    <div class="bgimg2">
+      <div class="middle">
+        <h1>CALCULO ETEC</h1>
+        <hr>
       </div>
+
     </div>
-    <footer class="footer">
-    </footer>
-  </body>
+
+    <div class="inputContainer">
+      <form action="/action_page.php">
+
+        <label for="estado">Selecione o Estado</label>
+        <select id="estado" name="estado">
+          <option value="outro">Outro</option>
+          <option class="estados" value="parana">Paraná</option>
+          <option class="estados" value="rio_de_janeiro">Rio de Janeiro</option>
+          <option class="estados" value="rio_grande_do_sul">Rio Grande do Sul</option>
+          <option class="estados" value="santa_catarina">Santa Catarina</option>
+          <option class="estados" value="sao_paulo">São Paulo</option>
+        </select>
+
+        <label for="fname">Salário Bruto: </label>
+        <input type="text" name="firstname" placeholder="Seu salário bruto..." id="txtsalario">
+
+        <input type="button" value="Calcular" onclick="clickButton()">
+
+      </form>
+    </div>
+    <h1>Tabela Resultado</h1>
+
+    <table id="customers">
+      <tr>
+        <th>Encargos</th>
+        <th>(%)</th>
+        <th>Valor</th>
+      </tr>
+      <tr>
+        <td>Salário Bruto</td>
+        <td>100%</td>
+        <td id="tdSBruto">0</td>
+      </tr>
+      <tr>
+        <td>INSS Empregador</td>
+        <td>8%</td>
+        <td id="tdINSS">0</td>
+      </tr>
+      <tr>
+        <td>FGTS</td>
+        <td>8%</td>
+        <td id="tdFGTS">0</td>
+      </tr>
+      <tr>
+        <td>Décimo Terceiro</td>
+        <td>8%</td>
+        <td id="tdDecimoTerceiro">0</td>
+      </tr>
+      <tr>
+        <td>Multa FGTS</td>
+        <td>3,2%</td>
+        <td id="tdMultaFGTS">0</td>
+      </tr>
+      <tr>
+        <td>Acidente de Trabalho</td>
+        <td>0,8%</td>
+        <td id="tdAcidenteTrabalho">0</td>
+      </tr>
+      <tr>
+        <td>Férias</td>
+        <td>0,6%</td>
+        <td id="tdFerias">0</td>
+      </tr>
+      <tr>
+        <td>Total de Encargos (DAE)</td>
+        <td></td>
+        <td id="tdDAE">0</td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td id="tdTotal">0</td>
+      </tr>
+    </table>
+  </div>
+  <div id="res">
+
+  </div>
+  <footer class="footer">
+  </footer>
+  <script>
+    const calculoEmpregada = (salarioBrutoValue, countryValue) => {
+      let salarioBruto = parseFloat(salarioBrutoValue);
+      let INSS = 0;
+      let FGTS = 0;
+      let MFGTS = 0;
+      let ACDTRABALHO = 0;
+      let DAE = 0;
+      let DT = 0;
+      let SBruto = salarioBruto;
+      let Total = 0;
+      let FE = 0;
+
+      // Verifique os valores e calcule os encargos trabalhistas
+      if (
+        salarioBruto < 1320 ||
+        (countryValue === 'sao_paulo' && salarioBruto < 1450) ||
+        (countryValue === 'rio_de_janeiro' && salarioBruto < 1427) ||
+        (countryValue === 'rio_grande_do_sul' && salarioBruto < 1510) ||
+        (countryValue === 'parana' && salarioBruto < 1731.02) ||
+        (countryValue === 'santa_catarina' && salarioBruto < 1521)
+      ) {
+        throw new Error('Valor abaixo do salário mínimo!');
+      } else {
+        // Faça os cálculos com o salarioBruto
+        let impostoINSS = salarioBruto * 0.08;
+        let impostoFGTS = salarioBruto * 0.08;
+        let multaFGTS = salarioBruto * 0.032;
+        let acidenteTrabalho = salarioBruto * 0.008;
+        let decimoTerceiro = salarioBruto / 12;
+        let ferias = decimoTerceiro / 3;
+        let valorDAE = acidenteTrabalho + impostoFGTS + multaFGTS + impostoINSS;
+
+        Total =
+          (salarioBruto +
+          impostoINSS +
+          multaFGTS +
+          acidenteTrabalho +
+          decimoTerceiro +
+          ferias).toFixed(2);
+
+        INSS = impostoINSS.toFixed(2);
+        FGTS = impostoFGTS.toFixed(2);
+        MFGTS = multaFGTS.toFixed(2);
+        ACDTRABALHO = acidenteTrabalho.toFixed(2);
+        DAE = valorDAE.toFixed(2);
+        DT = decimoTerceiro.toFixed(2);
+        FE = ferias.toFixed(2);
+      }
+
+      return {
+        salarioBruto: salarioBruto,
+        INSS: INSS,
+        FGTS: FGTS,
+        MFGTS: MFGTS,
+        ACDTRABALHO: ACDTRABALHO,
+        DAE: DAE,
+        DT: DT,
+        FE: FE,
+        SBruto: SBruto,
+        Total: Total,
+      };
+    };
+    const clickButton = () => {
+      let salarioBruto = Number(document.getElementById("txtsalario").value);
+      let estado = document.getElementById("estado").value;
+      let INSS = document.getElementById("tdINSS");
+      let FGTS = document.getElementById("tdFGTS");
+      let MFGTS = document.getElementById("tdMultaFGTS");
+      let ACDTRABALHO = document.getElementById("tdAcidenteTrabalho");
+      let DAE = document.getElementById("tdDAE");
+      let SBruto = document.getElementById("tdSBruto");
+      let Total = document.getElementById("tdTotal");
+      let DecimoTerceiro = document.getElementById("tdDecimoTerceiro");
+      let Ferias = document.getElementById("tdFerias");
+
+      const custoTotal = calculoEmpregada(salarioBruto, estado);
+
+      if (custoTotal == null) {
+
+        SBruto.innerHTML = "0";
+        INSS.innerHTML = "0";
+        FGTS.innerHTML = "0";
+        MFGTS.innerHTML = "0";
+        ACDTRABALHO.innerHTML = "0";
+        DAE.innerHTML = "0";
+        Total.innerHTML = "0";
+        DecimoTerceiro.innerHTML = "0";
+        Ferias.innerHTML = "0";
+
+        window.alert("Valor a baixo do salário minimo!");
+      } else {
+        console.log(custoTotal)
+        let total = custoTotal.Total;
+        let inss = custoTotal.INSS;
+        let fgts = custoTotal.FGTS;
+        let mfgts = custoTotal.MFGTS;
+        let acidente = custoTotal.ACDTRABALHO;
+        let decimoTerceiro = custoTotal.DT;
+        let ferias = custoTotal.FE;
+        let dae = custoTotal.DAE;
+
+        SBruto.innerHTML = `R$ ${salarioBruto}`;
+        INSS.innerHTML = `R$ ${inss}`;
+        FGTS.innerHTML = `R$ ${fgts}`;
+        MFGTS.innerHTML = `R$ ${mfgts}`;
+        ACDTRABALHO.innerHTML = `R$ ${acidente}`;
+        DAE.innerHTML = `R$ ${dae}`;
+        Total.innerHTML = `R$ ${custoTotal}`;
+        DecimoTerceiro.innerHTML = `R$ ${decimoTerceiro}`;
+        Ferias.innerHTML = `R$ ${ferias}`;
+        Total.innerHTML = `R$ ${total}`;
+      }
+    };
+  </script>
+</body>
+
+
 </html>

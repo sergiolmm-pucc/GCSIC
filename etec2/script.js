@@ -5,8 +5,10 @@ const calculoEmpregada = (salarioBrutoValue, countryValue) => {
   let MFGTS = 0;
   let ACDTRABALHO = 0;
   let DAE = 0;
+  let DT = 0;
   let SBruto = salarioBruto;
   let Total = 0;
+  let FE = 0;
 
   // Verifique os valores e calcule os encargos trabalhistas
   if (
@@ -29,29 +31,32 @@ const calculoEmpregada = (salarioBrutoValue, countryValue) => {
     let valorDAE = acidenteTrabalho + impostoFGTS + multaFGTS + impostoINSS;
 
     Total =
-      salarioBruto +
-      impostoINSS +
-      multaFGTS +
-      acidenteTrabalho +
-      decimoTerceiro +
-      ferias;
+      (salarioBruto +
+        impostoINSS +
+        multaFGTS +
+        acidenteTrabalho +
+        decimoTerceiro +
+        ferias);
 
-    INSS = impostoINSS.toFixed(2);
-    FGTS = impostoFGTS.toFixed(2);
-    MFGTS = multaFGTS.toFixed(2);
-    ACDTRABALHO = acidenteTrabalho.toFixed(2);
-    DAE = valorDAE.toFixed(2);
+    INSS = impostoINSS;
+    FGTS = impostoFGTS;
+    MFGTS = multaFGTS;
+    ACDTRABALHO = acidenteTrabalho;
+    DAE = valorDAE;
+    DT = decimoTerceiro;
+    FE = ferias;
   }
 
   return {
-    salarioBruto: `R$ ${salarioBruto.toFixed(2)}`,
-    INSS: `R$ ${INSS}`,
-    FGTS: `R$ ${FGTS}`,
-    MFGTS: `R$ ${MFGTS}`,
-    ACDTRABALHO: `R$ ${ACDTRABALHO}`,
-    DAE: `R$ ${DAE}`,
-    SBruto: `R$ ${SBruto.toFixed(2)}`,
-    Total: `R$ ${Total.toFixed(2)}`,
+    salarioBruto: Math.round(salarioBruto * 100) / 100,
+    INSS: Math.round(INSS * 100) / 100,
+    FGTS: Math.round(FGTS * 100) / 100,
+    MFGTS:Math.round(MFGTS * 100) / 100,
+    ACDTRABALHO: Math.round(ACDTRABALHO * 100) / 100,
+    DAE: Math.round(DAE * 100) / 100,
+    DT: Math.round(DT * 100) / 100,
+    FE: Math.round(FE * 100) / 100,
+    Total: Math.round(Total * 100) / 100,
   };
 };
 const clickButton = () => {
@@ -80,16 +85,18 @@ const clickButton = () => {
     Total.innerHTML = "0";
     DecimoTerceiro.innerHTML = "0";
     Ferias.innerHTML = "0";
-    
+
     window.alert("Valor a baixo do salário minimo!");
   } else {
-    let inss = calculoInss(salarioBruto);
-    let fgts = calculoFgts(salarioBruto);
-    let mfgts = calculoMultaFgts(salarioBruto);
-    let acidente = calculoAcidente(salarioBruto);
-    let decimoTerceiro = calculoDecimoTerceiro(salarioBruto);
-    let ferias = calculoFerias(salarioBruto);
-    let dae = inss + fgts + mfgts + acidente + decimoTerceiro + ferias;
+    console.log(custoTotal)
+    let total = custoTotal.Total;
+    let inss = custoTotal.INSS;
+    let fgts = custoTotal.FGTS;
+    let mfgts = custoTotal.MFGTS;
+    let acidente = custoTotal.ACDTRABALHO;
+    let decimoTerceiro = custoTotal.DT;
+    let ferias = custoTotal.FE;
+    let dae = custoTotal.DAE;
 
     SBruto.innerHTML = `R$ ${salarioBruto.toFixed(2)}`;
     INSS.innerHTML = `R$ ${inss.toFixed(2)}`;
@@ -100,6 +107,7 @@ const clickButton = () => {
     Total.innerHTML = `R$ ${custoTotal.toFixed(2)}`;
     DecimoTerceiro.innerHTML = `R$ ${decimoTerceiro.toFixed(2)}`;
     Ferias.innerHTML = `R$ ${ferias.toFixed(2)}`;
+    Total.innerHTML = `R$ ${total.toFixed(2)}`;
   }
 };
 
