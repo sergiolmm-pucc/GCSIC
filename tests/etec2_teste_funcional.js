@@ -1,6 +1,5 @@
 const { Builder, By } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const { toPng } = require('node-html-to-image');
 
 
 (async function testFuncional() {
@@ -16,23 +15,48 @@ const { toPng } = require('node-html-to-image');
       .setChromeOptions(options)
       .build();
 
-    await driver.get('https://jelly-flash-newsboy.glitch.me/page2.html');
+    await driver.get('https://lumpy-polite-rainstorm.glitch.me/ETEC2');
 
 
-    // Captura a imagem antes das ações de teste
-    const beforeImage = await driver.takeScreenshot();
-    await saveScreenshot(beforeImage, 'before.png');
+    await driver.sleep(2000);
+
+    driver.takeScreenshot().then(
+      function(image, err) {
+        require('fs').writeFile('etec2inicio.png', image, 'base64', function(err) {
+          console.log("erro"+ err);
+        });
+      }
+     );
+
+
+    // Seleciona uma opção no elemento <select>
+    const selectElement = await driver.findElement(By.id('estado'));
+    const optionElement = await selectElement.findElement(By.css('option[value="sao_paulo"]'));
+    await optionElement.click();
+
 
     // Insere um salário bruto maior que o recomendado (2000)
     const salarioInput = await driver.findElement(By.id('txtsalario'));
     await salarioInput.sendKeys('2000');
 
+    
+
     // Clica no botão "Calcular"
     const calcularButton = await driver.findElement(By.css('input[type="button"]'));
     await calcularButton.click();
 
-    // Verifica se os cálculos foram feitos corretamente
+   
+    await driver.sleep(5000);
 
+    driver.takeScreenshot().then(
+      function(image, err) {
+        require('fs').writeFile('etec2fim.png', image, 'base64', function(err) {
+          console.log("erro"+ err);
+        });
+      }
+     );
+
+      // Verifica se os cálculos foram feitos corretamente
     const salarioBrutoElement = await driver.findElement(By.id('tdSBruto'));
     const salarioBruto = await salarioBrutoElement.getText();
     if (salarioBruto == '0') {
@@ -82,10 +106,19 @@ const { toPng } = require('node-html-to-image');
     }
     console.log('O cálculo do total está funcionando.');
 
-    // Captura a imagem depois das ações de teste
-    const afterImage = await driver.takeScreenshot();
-    await saveScreenshot(afterImage, 'after.png');
+    const outputElement = await driver.findElement(By.id('estado'));
+    const estado = await outputElement.getAttribute('value');
+
+
+    if (estado !== 'sao_paulo') {
+    throw new Error('O valor selecionado no elemento <select> não é exibido corretamente no elemento de saída.');
+    } 
+
+    console.log('O valor selecionado no elemento <select> é exibido corretamente no elemento de saída.');
+
   } 
+
+    
     
     finally {
     if (driver) {
