@@ -1,5 +1,5 @@
 describe("Testando o valor total do produto com imposto em SP", () => {
-    const tax = 8;
+    const tax = 0.08;
     const productPrice = 100;
     const totalPrice = productPrice + productPrice * tax;
     test("Testando se o valor total do produto está correto", () => {
@@ -7,7 +7,7 @@ describe("Testando o valor total do produto com imposto em SP", () => {
     });
   });
 describe("Testando o valor total do produto com imposto em RJ", () => {
-    const tax = 6;
+    const tax = 0.06;
     const productPrice = 100;
     const totalPrice = productPrice + productPrice * tax;
     test("Testando se o valor total do produto está correto", () => {
@@ -15,7 +15,7 @@ describe("Testando o valor total do produto com imposto em RJ", () => {
     });
   });
 describe("Testando o valor total do produto com imposto em MG", () => {
-    const tax = 7;
+    const tax = 0.07;
     const productPrice = 100;
     const totalPrice = productPrice + productPrice * tax;
     test("Testando se o valor total do produto está correto", () => {
