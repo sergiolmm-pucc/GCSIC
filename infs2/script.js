@@ -27,7 +27,7 @@ function calcularImpostos(empresa, valor, cidade) {
   return { empresa, imposto, taxa, total };
 }
 
-document.getElementById("calculadoraForm").addEventListener("submit", (event) => {
+document.getElementById("calcularBtn").addEventListener("click", (event) => {
   event.preventDefault();
 
   const empresa = document.getElementById("empresa").value;
