@@ -70,6 +70,7 @@ const screen = {
             console.log("Fora While");
             //
             console.log("começando screenshot calcular sem dados")
+
     	   driver.takeScreenshot().then(
             function(image, err) {
               require('fs').writeFile('calcular_sem_dados1_mkp.png', image, 'base64', function(err) {
@@ -80,7 +81,7 @@ const screen = {
 
         
     	try{    
-    		let searchIcon = driver.findElement(By.id("calculate"));
+    		let searchIcon = driver.findElement(By.id("caculate"));
     			searchIcon.click();
     		}catch(error){
         	console.log("erro no botao");
