@@ -16,7 +16,8 @@
     "mkp-info": "node tests/test_info_mkp.js",
     "etec-button": "node tests/etec_button-render.js",
     "etec-print": "node tests/etec_print.js",
-    "etec-title": "node tests/etec_test_title.js"
+    "etec-title": "node tests/etec_test_title.js",
+    "etec2_teste_funcional": "node tests/etec2_teste_funcional.js"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-mvp-node"
