@@ -98,6 +98,7 @@ const screen = {
     );
     console.log("fim info")
 
+    await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
       
     await alert.accept();

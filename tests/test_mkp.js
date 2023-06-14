@@ -104,6 +104,8 @@ const screen = {
       
 
 
+      await driver.wait(until.alertIsPresent());
+      
       let alert = await driver.switchTo().alert();
       
       await alert.accept();
