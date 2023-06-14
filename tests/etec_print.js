@@ -21,9 +21,9 @@ const screen = {
       .build();
     console.log("BUILD 2");
   try {
-    await driver.get('http://localhost:3000/ht');
+    await driver.get('http://localhost:3000/etec');
     
-    let btn = await driver.findElement(By.id('sendbutton'));   
+    let btn = await driver.findElement(By.id('calculate'));   
     let didSendButtonRender = btn.isDisplayed()
     if (!didSendButtonRender){
       throw new Error(`Send button was not rendered properly.`);
