@@ -5,7 +5,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="w-full h-screen flex justify-center items-center bg-neutral-500">
+    <div class="w-full h-full flex justify-center items-center bg-neutral-500 py-48">
       <div class="bg-white border border-gray-300 p-6 rounded-xl shadow-xl">
         <h1 class="text-2xl font-bold text-center mb-6">Cálculo de Impostos - NF de Serviço</h1>
       
@@ -59,7 +59,7 @@
         </div>
       
         <div class="text-center">
-          <button class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2" onclick="calcularImpostos()">Calcular Impostos</button>
+          <button class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2" onclick="getValue()">Calcular Impostos</button>
         </div>
       
         <h2 class="text-lg font-semibold mt-8 mb-4">Resultados:</h2>
@@ -75,10 +75,10 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/inputmask/dist/inputmask.min.js"></script>
-    <script src="./main.js"></script>
+    <script src="./calculoNotaServico.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        var valorServico = document.getElementById('valor-servico');
+      var valorServico = document.getElementById('valor-servico');
         var inputMaskOptions = {
           prefix: 'R$ ',
           groupSeparator: '.',
@@ -92,6 +92,26 @@
         };
         new Inputmask('currency', inputMaskOptions).mask(valorServico);
       });
+
+      function getValue(){
+        const valorServicoInput = document.getElementById('valor-servico');
+        const valorServicoRaw = valorServicoInput.inputmask.unmaskedvalue(); // Get the raw unmasked value
+        const valorServicoString = String(valorServicoRaw); // Convert to string
+        const valorServico = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point
+
+        const regimePIS = document.getElementById('regime-pis').value;
+        const regimeCOFINS = document.getElementById('regime-cofins').value;
+        const tipoEmpresa = document.getElementById('tipo-empresa').value;
+        const faixaFaturamento = document.getElementById('faixa-faturamento').value;
+
+        calcularImpostos(valorServico, regimePIS, regimeCOFINS, tipoEmpresa, faixaFaturamento)
+          .then((resultados) => {
+            exibirResultados(resultados);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     </script>
   </body>
 </html>

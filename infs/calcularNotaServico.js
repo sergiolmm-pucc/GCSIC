@@ -1,37 +1,56 @@
-function calcularImpostos() {
-  const valorServicoInput = document.getElementById('valor-servico');
-  const valorServicoRaw = valorServicoInput.inputmask.unmaskedvalue(); // Get the raw unmasked value
-  const valorServicoString = String(valorServicoRaw); // Convert to string
-  const valorServico = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point
+function calcularImpostos(valorServico, regimePIS, regimeCOFINS, tipoEmpresa, faixaFaturamento) {
+  return new Promise((resolve, reject) => {
+  
+    if(isNaN(valorServico) && valorServico > 0){
+      return alert("Valor Inválido");
+    }
 
-  if(!isValidValor(valorServico)){
-    return;
-  }
 
-  const faixaFaturamento = parseInt(document.getElementById('faixa-faturamento').value);
+    const aliquotaPIS = calcularAliquotaPIS(regimePIS);
+    const aliquotaCOFINS = calcularAliquotaCOFINS(regimeCOFINS);
+    const aliquotaCSLL = calcularAliquotaCSLL(tipoEmpresa, faixaFaturamento);
+    const aliquotaISS = 0.05; // Alíquota fixa de 5% para ISS
+    const aliquotaIRPJ = 0.15; // Alíquota fixa de 15% para IRPJ
 
-  const aliquotaPIS = calcularAliquotaPIS(regimePIS);
-  const aliquotaCOFINS = calcularAliquotaCOFINS(regimeCOFINS);
-  const aliquotaCSLL = calcularAliquotaCSLL(tipoEmpresa, faixaFaturamento);
-  const aliquotaISS = 0.05; // Alíquota fixa de 5% para ISS
-  const aliquotaIRPJ = 0.15; // Alíquota fixa de 15% para IRPJ
+    const valorPIS = valorServico * aliquotaPIS;
+    const valorCOFINS = valorServico * aliquotaCOFINS;
+    const valorCSLL = valorServico * aliquotaCSLL;
+    const valorISS = valorServico * aliquotaISS;
+    const valorIRPJ = valorServico * aliquotaIRPJ;
 
-  const valorPIS = valorServico * aliquotaPIS;
-  const valorCOFINS = valorServico * aliquotaCOFINS;
-  const valorCSLL = valorServico * aliquotaCSLL;
-  const valorISS = valorServico * aliquotaISS;
-  const valorIRPJ = valorServico * aliquotaIRPJ;
+    const totalImpostos = valorPIS + valorCOFINS + valorCSLL + valorISS + valorIRPJ;
+    const valorTotal = valorServico + totalImpostos;
 
-  const totalImpostos = valorPIS + valorCOFINS + valorCSLL + valorISS + valorIRPJ;
-  const valorTotal = valorServico + totalImpostos;
+    const resultados = {
+      valorPIS: valorPIS.toFixed(2),
+      valorCOFINS: valorCOFINS.toFixed(2),
+      valorCSLL: valorCSLL.toFixed(2),
+      valorISS: valorISS.toFixed(2),
+      valorIRPJ: valorIRPJ.toFixed(2),
+      totalImpostos: totalImpostos.toFixed(2),
+      valorTotal: valorTotal.toFixed(2)
+    };
 
-  document.getElementById('resultado-pis').textContent = `Valor do PIS: R$ ${valorPIS.toFixed(2)}`;
-  document.getElementById('resultado-cofins').textContent = `Valor do COFINS: R$ ${valorCOFINS.toFixed(2)}`;
-  document.getElementById('resultado-csll').textContent = `Valor do CSLL: R$ ${valorCSLL.toFixed(2)}`;
-  document.getElementById('resultado-iss').textContent = `Valor do ISS: R$ ${valorISS.toFixed(2)}`;
-  document.getElementById('resultado-irpj').textContent = `Valor do IRPJ: R$ ${valorIRPJ.toFixed(2)}`;
-  document.getElementById('total-impostos').textContent = `Total de Impostos: R$ ${totalImpostos.toFixed(2)}`;
-  document.getElementById('valor-total').textContent = `Valor Total (Serviço + Impostos): R$ ${valorTotal.toFixed(2)}`;
+    resolve(resultados);
+  });
+}
+
+function exibirResultados(resultado) {
+  const resultadoPIS = document.getElementById('resultado-pis');
+  const resultadoCOFINS = document.getElementById('resultado-cofins');
+  const resultadoCSLL = document.getElementById('resultado-csll');
+  const resultadoISS = document.getElementById('resultado-iss');
+  const resultadoIRPJ = document.getElementById('resultado-irpj');
+  const totalImpostos = document.getElementById('total-impostos');
+  const valorTotal = document.getElementById('valor-total');
+
+  resultadoPIS.textContent = `Valor do PIS: R$ ${resultado.valorPIS}`;
+  resultadoCOFINS.textContent = `Valor do COFINS: R$ ${resultado.valorCOFINS}`;
+  resultadoCSLL.textContent = `Valor do CSLL: R$ ${resultado.valorCSLL}`;
+  resultadoISS.textContent = `Valor do ISS: R$ ${resultado.valorISS}`;
+  resultadoIRPJ.textContent = `Valor do IRPJ: R$ ${resultado.valorIRPJ}`;
+  totalImpostos.textContent = `Total de Impostos: R$ ${resultado.totalImpostos}`;
+  valorTotal.textContent = `Valor Total (Serviço + Impostos): R$ ${resultado.valorTotal}`;
 }
 
 function calcularAliquotaPIS(regimePIS) {
@@ -85,12 +104,6 @@ function calcularAliquotaCSLL(tipoEmpresa, faixaFaturamento) {
       }
     default:
       return 0.09; // Alíquota padrão para CSLL (empresas em geral)
-  }
-}
-
-function isValidValor(valor){
-  if(isNaN(valor)){
-    return alert("Valor do Serviço deve ser númerico");
   }
 }
 
