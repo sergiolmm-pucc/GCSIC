@@ -91,26 +91,27 @@ const screen = {
 
 
             // Wait for the alert to be displayed
-   
-// Wait for the alert to be displayed
-    await driver.wait(until.alertIsPresent(), 5000);
 
-    // Capturar a mensagem do alerta
-    const alert = await driver.switchTo().alert();
-    const alertText = await alert.getText();
+        const alertText = await driver.executeScript('return window.alert.message');
 
-    // Imprimir a mensagem do alerta
-    console.log('Mensagem do alerta:', alertText);
+        // Imprimir a mensagem do alerta
+        console.log('Mensagem do alerta:', alertText);
 
-    // Tirar uma screenshot da página após a exibição do alerta
-    await driver.takeScreenshot().then(image => {
-      require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
-    });
+        await driver.wait(until.alertIsPresent(), 5000);
+        
+        await driver.takeScreenshot().then(image => {
+          require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
+        });
 
-    // Aceitar o alerta
-    await alert.accept();
- 
-   await driver.sleep(5000);
+        // Wait for the alert to be displayed
+        let alert = await driver.switchTo().alert();
+
+        // Aceitar o alerta
+        await alert.accept();
+
+        await driver.wait(until.titleIs('Cálculo de MarkUp'), 5000);
+
+        await driver.sleep(5000);
        
       } finally {
         console.log('Finalizado');
