@@ -21,7 +21,7 @@ const screen = {
       .build();
     console.log("BUILD 2");
   try {
-    await driver.get('http://localhost:3000/etec');
+    await driver.get('https://lumpy-polite-rainstorm.glitch.me/ETEC');
     
     let btn = await driver.findElement(By.id('calculate'));   
     let didSendButtonRender = btn.isDisplayed()

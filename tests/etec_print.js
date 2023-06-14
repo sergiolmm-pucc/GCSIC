@@ -18,7 +18,7 @@ const fs = require('fs');
   console.log("BUILD 2");
 
   try {
-    await driver.get('http://localhost:3000/etec');
+    await driver.get('https://lumpy-polite-rainstorm.glitch.me/ETEC');
 
     let btn = await driver.findElement(By.id('calculate'));
     let didSendButtonRender = await btn.isDisplayed();
@@ -30,7 +30,7 @@ const fs = require('fs');
     // Capture a screenshot
     const screenshotData1 = await driver.takeScreenshot();
 
-    fs.writeFileSync('./etec/imagens/etec-inicio.png', screenshotData1, 'base64');
+    fs.writeFileSync('etec-inicio.png', screenshotData1, 'base64');
     console.log('Screenshot 1 saved.');
 
     let text = await driver.findElement(By.id('calculate')).getText();
@@ -47,7 +47,7 @@ const fs = require('fs');
     // Capture another screenshot after clicking the button
     const screenshotData2 = await driver.takeScreenshot();
 
-    fs.writeFileSync('./etec/imagens/etec-fim.png', screenshotData2, 'base64');
+    fs.writeFileSync('etec-fim.png', screenshotData2, 'base64');
     console.log('Screenshot 2 saved.');
 
   } finally {

@@ -34,7 +34,7 @@ describe('sampleFunctionalTests', function () {
     	{
 			try
 			{
-				await driver.get("https://sergio-etec.glitch.me/");
+				await driver.get("https://lumpy-polite-rainstorm.glitch.me/ETEC");
 				await driver.wait(until.titleIs('Calculadora ETEC'), 2000);
 				break;
 			}
