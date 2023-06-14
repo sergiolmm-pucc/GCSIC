@@ -89,6 +89,10 @@ const screen = {
     	}
 
 
+       // Tirar uma screenshot da página após a exibição do alerta
+       await driver.takeScreenshot().then(image => {
+        require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
+      });
       try {
         // Aguardar a presença do alerta
         await driver.wait(until.alertIsPresent(), 5000);
@@ -102,10 +106,7 @@ const screen = {
         // Imprimir a mensagem do alerta
         console.log('Mensagem do alerta:', alertText);
       
-        // Tirar uma screenshot da página após a exibição do alerta
-        await driver.takeScreenshot().then(image => {
-          require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
-        });
+       
       
         // Aceitar o alerta
         await alert.accept();
