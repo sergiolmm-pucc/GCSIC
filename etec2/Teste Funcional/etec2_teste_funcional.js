@@ -3,16 +3,16 @@ const chrome = require('selenium-webdriver/chrome');
 
 
 (async function testFuncional() {
-  let driver;
+  
 
   try {
     // Configuração do driver do Chrome
     const options = new chrome.Options();
     options.addArguments('--no-sandbox');
 
-    driver = await new Builder()
+    let driver = await new Builder()
       .forBrowser('chrome')
-      .setChromeOptions(options)
+      .setChromeOptions(new chrome.Options().headless().windowSize(screen))
       .build();
 
     await driver.get('https://lumpy-polite-rainstorm.glitch.me/ETEC2');

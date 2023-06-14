@@ -3,22 +3,24 @@ const chrome = require('selenium-webdriver/chrome');
 
 
 (async function testFuncional() {
-  let driver;
+
+
+  // Configuração do driver do Chrome
+  const options = new chrome.Options();
+  options.addArguments('--no-sandbox');
+
+  let driver = await new Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(chrome)
+    .build();
 
   try {
-    // Configuração do driver do Chrome
-    const options = new chrome.Options();
-    options.addArguments('--no-sandbox');
 
-    driver = await new Builder()
-      .forBrowser('chrome')
-      .setChromeOptions(options)
-      .build();
 
     await driver.get('https://lumpy-polite-rainstorm.glitch.me/ETEC2');
 
 
-    await driver.sleep(2000);
+    await driver.sleep(8000);
 
     driver.takeScreenshot().then(
       function(image, err) {
