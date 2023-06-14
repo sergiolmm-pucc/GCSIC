@@ -88,10 +88,17 @@ const screen = {
         	console.log("erro no botao");
     	}
 
-      await driver.wait(async () => {
-        const pageSource = await driver.getPageSource();
-        return pageSource.includes('ERRO - Preencha todos os dados');
-      });
+       // Esperar até que o alerta seja exibido
+        await driver.wait(async () => {
+          const pageSource = await driver.getPageSource();
+          return pageSource.includes('ERRO - Preencha todos os dados');
+        });
+
+        // Capturar a mensagem do alerta
+        const alertText = await driver.executeScript('return window.alert.message');
+
+        // Imprimir a mensagem do alerta
+        console.log('Mensagem do alerta:', alertText);
 
         driver.takeScreenshot().then(
             function(image, err) {
