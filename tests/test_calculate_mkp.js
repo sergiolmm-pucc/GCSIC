@@ -75,9 +75,9 @@ const screen = {
         try{
             let fieldFE = driver.findElement(By.id("fixed_expanses"))
             fieldFE.sendKeys(10)
-            let fieldVE = driver.findElement(By.id("fixed_expanses"))
+            let fieldVE = driver.findElement(By.id("variable_expenses"))
             fieldVE.sendKeys(20)
-            let fieldPF = driver.findElement(By.id("fixed_expanses"))
+            let fieldPF = driver.findElement(By.id("profit"))
             fieldPF.sendKeys(30)
         }catch(error){
             console.log("erro preenchendo campo");
