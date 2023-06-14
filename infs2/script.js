@@ -41,3 +41,9 @@ document.getElementById("calcularBtn").addEventListener("click", (event) => {
                                  <p>Imposto a pagar (${taxa}%): R$ ${imposto.toFixed(2)}</p>
                                  <p>Total: R$ ${total.toFixed(2)}</p>`;
 });
+
+module.exports = {
+  calcularImpostoSaoPaulo,
+  calcularImpostoCampinas,
+  calcularImpostos
+};
