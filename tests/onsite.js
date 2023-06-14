@@ -76,6 +76,26 @@ const screen = {
               });
             }
            );
+
+ 	//name locator for google search button
+    	try{    
+    		let searchIcon = driver.findElement(By.id("calculate"));
+    			searchIcon.click();
+    		}catch(error){
+        	console.log("erro no botao");
+    	}
+        
+   // Wait for 5 secs to let the dynamic content to load
+   await driver.sleep(5000);
+
+      	   driver.takeScreenshot().then(
+            function(image, err) {
+              require('fs').writeFile('fim14.png', image, 'base64', function(err) {
+                console.log("erro"+ err);
+              });
+            }
+           );
+
 	    
         //});    
        
