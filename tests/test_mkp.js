@@ -88,37 +88,27 @@ const screen = {
         	console.log("erro no botao");
     	}
 
-       // Esperar até que o alerta seja exibido
-        await driver.wait(async () => {
-          const pageSource = await driver.getPageSource();
-          return pageSource.includes('ERRO - Preencha todos os dados');
-        });
-
-        // Capturar a mensagem do alerta
-        const alertText = await driver.executeScript('return window.alert.message');
-
-        // Imprimir a mensagem do alerta
-        console.log('Mensagem do alerta:', alertText);
-
-        driver.takeScreenshot().then(
-            function(image, err) {
-              require('fs').writeFile('calcular_sem_dados2_mkp.png', image, 'base64', function(err) {
-                console.log("erro"+ err);
-              });
-            }
-           );
-
         console.log("fim screenshot calcular sem dados")
 
             // Wait for the alert to be displayed
       
+  // Capturar a mensagem do alerta
+  const alertText = await driver.executeScript('return window.alert.message');
 
+  // Imprimir a mensagem do alerta
+  console.log('Mensagem do alerta:', alertText);
 
-      
+  // Tirar uma screenshot da página após a exibição do alerta
+  await driver.takeScreenshot().then(image => {
+    require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
+  });
 
-      let alert = await driver.switchTo().alert();
-      
-      await alert.accept();
+  // Wait for the alert to be displayed
+  let alert = await driver.switchTo().alert();
+
+    // Aceitar o alerta
+    await alert.accept();
+
 
       await driver.sleep(5000);
        
