@@ -114,7 +114,11 @@ const screen = {
 
     console.log("fim screenshot calcular com dados")
 
+    let alert = await driver.switchTo().alert();
+      
+    await alert.accept();
 
+    await driver.sleep(5000);
 
       } finally {
         console.log('Finalizado');

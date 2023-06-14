@@ -97,6 +97,12 @@ const screen = {
         }
     );
     console.log("fim info")
+
+    let alert = await driver.switchTo().alert();
+      
+    await alert.accept();
+
+    await driver.sleep(5000);
        
       } finally {
         console.log('Finalizado');
