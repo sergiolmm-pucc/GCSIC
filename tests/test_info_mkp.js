@@ -86,26 +86,37 @@ const screen = {
         console.log("erro no botao");
     }
    
-        // Wait for the alert to be displayed
+       // Tirar uma screenshot da página após a exibição do alerta
+       await driver.takeScreenshot().then(image => {
+        require('fs').writeFileSync('info2_mkp.png', image, 'base64');
+      });
+      try {
+        // Aguardar a presença do alerta
         await driver.wait(until.alertIsPresent(), 5000);
-
-        // Capturar a mensagem do alerta
+      
+        // Capturar o alerta
         const alert = await driver.switchTo().alert();
+      
+        // Capturar a mensagem do alerta
         const alertText = await alert.getText();
-
+      
         // Imprimir a mensagem do alerta
         console.log('Mensagem do alerta:', alertText);
-
-        // Tirar uma screenshot da página após a exibição do alerta
-        await driver.takeScreenshot().then(image => {
-        require('fs').writeFileSync('calcular_sem_dados2_mkp.png', image, 'base64');
-        });
-
+      
+       
+      
         // Aceitar o alerta
         await alert.accept();
-
-  
-    await driver.sleep(5000);
+      } catch (error) {
+        console.log('Erro ao lidar com o alerta:', error);
+      }
+      
+      // Aguardar a página ser carregada completamente após lidar com o alerta
+      await driver.wait(until.titleIs('Cálculo de MarkUp'), 5000);
+      
+      // Aguardar mais tempo, se necessário, para garantir que a página esteja totalmente carregada
+      await driver.sleep(5000);
+       
        
       } finally {
         console.log('Finalizado');
