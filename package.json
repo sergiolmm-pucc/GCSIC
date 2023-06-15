@@ -17,7 +17,11 @@
     "etec-button": "node tests/etec_button-render.js",
     "etec-print": "node tests/etec_print.js",
     "etec-title": "node tests/etec_test_title.js",
-    "etec2_teste_funcional": "node tests/etec2_teste_funcional.js"
+    "etec2_teste_funcional": "node tests/etec2_teste_funcional.js",
+    "infs-Button": "node test/renderButtonINFS.js",
+    "infs-NoValues": "node test/funcionalTestNoValue.js",
+    "infs-ZeroValue": "node test/funcionalTestZeroValue.js",
+    "infs-ValidValue": "node test/funcionalTestValidValue.js"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-mvp-node"
