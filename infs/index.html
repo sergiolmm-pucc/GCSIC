@@ -78,8 +78,9 @@
     <script src="./calcularNotaServico.js"></script>
     <script>
 
-      document.addEventListener('DOMContentLoaded', function() {
-      var valorServico = document.getElementById('valor-servico');
+      function getValue(){
+
+        var valorServico = document.getElementById('valor-servico');
         var inputMaskOptions = {
           prefix: 'R$ ',
           groupSeparator: '.',
@@ -92,11 +93,8 @@
           unmaskAsNumber: true
         };
         new Inputmask('currency', inputMaskOptions).mask(valorServico);
-      });
 
-      function getValue(){
-        const valorServicoInput = document.getElementById('valor-servico');
-        const valorServicoRaw = valorServicoInput.inputmask.unmaskedvalue(); // Get the raw unmasked value
+        const valorServicoRaw = valorServico.inputmask.unmaskedvalue(); // Get the raw unmasked value
         const valorServicoString = String(valorServicoRaw); // Convert to string
         const valorServico = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point
 
