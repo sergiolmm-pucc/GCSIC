@@ -75,7 +75,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/inputmask/dist/inputmask.min.js"></script>
-    <script src="./calculoNotaServico.js"></script>
+    <script src="./calcularNotaServico.js"></script>
     <script>
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -114,9 +114,8 @@
           });
       }
 
-      var btnCalcular = document.getElementById("calcular");
+      document.getElementById("calcular").addEventListener("click", getValue);
 
-      btnCalcular.addEventListener("click", getValue);
     </script>
   </body>
 </html>
