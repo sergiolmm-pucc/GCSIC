@@ -14,18 +14,17 @@ async function tirarScreenshots() {
     const produtoInput = await driver.findElement(By.css('#produto'));
     const valorInput = await driver.findElement(By.css('#preco'));
     const estadoInput = await driver.findElement(By.css('#estado'));
-    const submitButton = await driver.findElement(By.css('#calcularImpostoBtn'));
 
     // Preenche os campos
     await produtoInput.sendKeys('Caneca');
     await valorInput.sendKeys('100');
     await estadoInput.sendKeys('SP');
 
-    // Tira o screenshot após preencher os campos
     await driver.takeScreenshot().then((data) => {
       fs.writeFileSync('infp-preenchido.png', data, 'base64');
     });
 
+    const submitButton = await driver.findElement(By.css('#calcularImpostoBtn'));
     await submitButton.click();
 
     await driver.sleep(2000);
