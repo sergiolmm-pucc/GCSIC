@@ -96,14 +96,14 @@
 
         const valorServicoRaw = valorServico.inputmask.unmaskedvalue(); // Get the raw unmasked value
         const valorServicoString = String(valorServicoRaw); // Convert to string
-        const valorServico = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point
+        const valorServicoParsed = parseFloat(valorServicoString.replace(',', '.')); // Remove the group separator and replace the radix point
 
         const regimePIS = document.getElementById('regime-pis').value;
         const regimeCOFINS = document.getElementById('regime-cofins').value;
         const tipoEmpresa = document.getElementById('tipo-empresa').value;
         const faixaFaturamento = document.getElementById('faixa-faturamento').value;
 
-        calcularImpostos(valorServico, regimePIS, regimeCOFINS, tipoEmpresa, faixaFaturamento)
+        calcularImpostos(valorServicoParsed, regimePIS, regimeCOFINS, tipoEmpresa, faixaFaturamento)
           .then((resultados) => {
             exibirResultados(resultados);
           })
