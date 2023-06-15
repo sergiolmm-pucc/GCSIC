@@ -1,8 +1,12 @@
 function calcularImpostos(valorServico, regimePIS, regimeCOFINS, tipoEmpresa, faixaFaturamento) {
   return new Promise((resolve, reject) => {
-  
-    if(isNaN(valorServico) && valorServico > 0){
-      return alert("Valor Inválido");
+
+    if(isNaN(valorServico)){
+      return alert("Apenas números! Valor Inválido");
+    }
+
+    if(valorServico <= 0){
+      return alert('Valor menor que zero! Valor Inválido')
     }
 
 
