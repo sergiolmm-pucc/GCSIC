@@ -22,3 +22,6 @@ describe("Testando o valor total do produto com imposto em MG", () => {
       expect(totalPrice).toBe(107.00);
     });
   });
+
+
+
