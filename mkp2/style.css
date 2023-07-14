@@ -8,13 +8,176 @@
   font-family: "Nunito", Arial, Helvetica, sans-serif;
 }
 
+html {
+  background-color: black;
+  overflow: hidden;
+}
+
+@keyframes aneurysm {
+  0% {
+    filter: none;
+  }
+  5% {
+    filter: none;
+  }
+  7% {
+    filter: blur(1px);
+  }
+  10% {
+    filter: none;
+  }
+  20% {
+    filter: blur(8px) saturate(2);
+    rotate: 0deg;
+  }
+  30% {
+    filter: blur(64px) saturate(5) drop-shadow(0 0 256px white);
+    rotate: 500deg;
+    scale: 1;
+    translate: 0px 0vh;
+  }
+  50% {
+    filter: blur(256px) saturate(5) drop-shadow(0 0 1024px white);
+    rotate: 2500deg;
+    scale: 0;
+    translate: 0px 50vh;
+  }
+  100% {
+    filter: blur(256px) saturate(5) drop-shadow(0 0 1024px white);
+    rotate: 2500deg;
+    scale: 0;
+    translate: 0px 50vh;
+  }
+}
+
 body {
-  background-color: var(--gray-900);
-  /* background-image: url("./bg.png"); */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  animation-name: aneurysm;
+  animation-duration: 80s;
+  animation-timing-function: linear;
+
+  /* filter: invert(1) contrast(0.66) opacity(0.5) brightness(1.25); */
+}
+
+@keyframes bg {
+  0% {
+    background-position: 0% 0%;
+  }
+  /* 50% {
+    background-position: 100% 100%;
+  } */
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes bg2 {
+  0% {
+    background-position: 0% 0%;
+    filter: none;
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: brightness(1.25) hue-rotate(20deg);
+  }
+  100% {
+    background-position: -100% 100%;
+    filter: none;
+  }
+}
+
+.background {
+  position: fixed;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  pointer-events: none;
+
+  background-image: url("./assets/bg.png");
+
+  animation-name: bg;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.images {
+  /* background-color: var(--gray-900); */
+  position: fixed;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+  background-image: url("./assets/bg2.png");
+
+  background-blend-mode: color-burn;
+  animation-name: bg2;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+img {
+  max-width: 400px;
+
+  border: 4px inset white;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ml-xl {
+  margin-left: 400px;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.height-200px {
+  height: 170px;
+}
+
+.width-500px {
+  width: 500px;
+  max-width: 500px;
 }
 
 .root {
-  position: fixed;
+  position: absolute;
+
+  top: 0;
 
   width: 100%;
   height: 100vh;
